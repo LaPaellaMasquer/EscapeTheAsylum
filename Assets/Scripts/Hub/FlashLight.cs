@@ -5,7 +5,7 @@ using UnityEngine;
 public class FlashLight : MonoBehaviour
 {
     AndroidJavaObject camManager;
-    bool isOn=false;
+    public bool isOn=false;
 
     // Start is called before the first frame update
     void Start()
@@ -23,25 +23,8 @@ public class FlashLight : MonoBehaviour
         if (!isOn)
         {
             isOn = camManager.Call<bool>("isFlashOn");
+            transform.GetChild(0).gameObject.SetActive(!isOn);
             transform.GetComponent<Light>().enabled = isOn;
         }
     }
-
-    /*
-    private void OnGUI()
-    {
-        GUI.skin.label.fontSize = Screen.width / 40;
-
-        bool isFlashOn = camManager.Call<bool>("isFlashOn");
-        if (isFlashOn)
-        {
-            GUILayout.Label("\n\nYeah");
-        }
-        else
-        {
-            GUILayout.Label("\n\nTT");
-        }
-        GUILayout.Label("\n\n\n" + camManager.Call<string>("getCamUpdateId"));
-    }
-    */
 }

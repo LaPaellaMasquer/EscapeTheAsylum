@@ -16,6 +16,6 @@ public class MirrorDeviceCamera : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }

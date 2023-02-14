@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/HiddenText.unity
+    guid: 3c67e887bc883b1468fd3518a0af9a80
   m_configObjects: {}

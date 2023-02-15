@@ -8,6 +8,12 @@ using TMPro;
 public class LightSensorRecept : MonoBehaviour {
     [SerializeField]
     TextMeshProUGUI tmp;
+    [SerializeField]
+    TextMeshProUGUI tmp10;
+    [SerializeField]
+    TextMeshProUGUI tmp20;
+    [SerializeField]
+    TextMeshProUGUI tmp30;
    // [Serializabled]
     float valueSensor;
     float ratio;
@@ -18,7 +24,7 @@ public class LightSensorRecept : MonoBehaviour {
     {
         InputSystem.EnableDevice(LightSensor.current);
         alpha = 0;
-        ratio = 255f/ 20f;
+        ratio = 40f / 25f;
      //   blackColor = new Color32(255, 255, 255, 255);
      
     }
@@ -33,8 +39,9 @@ public class LightSensorRecept : MonoBehaviour {
             {
                 Debug.Log("LightSensor is enabled" + LightSensor.current.lightLevel.ReadValue());
                 valueSensor =  LightSensor.current.lightLevel.ReadValue();
-                alpha =  (int)(255 -valueSensor * (int)ratio);
-                tmp.color = new Color32(15, 98, 230,(byte)(100- alpha));
+                alpha =   (int)(40f - (float)valueSensor * ratio);
+                alpha = (alpha>=0)?alpha:0;
+                tmp.color = new Color32(0, 255, 0,(byte)(alpha));
                 
             }
                 

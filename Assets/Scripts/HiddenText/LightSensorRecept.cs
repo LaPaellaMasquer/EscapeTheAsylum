@@ -9,12 +9,8 @@ public class LightSensorRecept : MonoBehaviour {
     [SerializeField]
     TextMeshProUGUI tmp;
     [SerializeField]
-    TextMeshProUGUI tmp10;
-    [SerializeField]
-    TextMeshProUGUI tmp20;
-    [SerializeField]
-    TextMeshProUGUI tmp30;
-   // [Serializabled]
+    GameObject cubeConteneur;
+
     float valueSensor;
     float ratio;
     Color32 blackColor;
@@ -41,8 +37,16 @@ public class LightSensorRecept : MonoBehaviour {
                 valueSensor =  LightSensor.current.lightLevel.ReadValue();
                 alpha =   (int)(40f - (float)valueSensor * ratio);
                 alpha = (alpha>=0)?alpha:0;
-                tmp.color = new Color32(0, 255, 0,(byte)(alpha));
+                //tmp.color = new Color32(0, 255, 0,(byte)(alpha));
+                for(int i =0;i<cubeConteneur.transform.childCount;i++)
+                {
+                    if(cubeConteneur.transform.GetChild(i).GetComponent<CubeGestion>().limit> alpha)
+                    {
+                        //CHANGE LA LIMIT
+                    }
                 
+                }
+               
             }
                 
             else  Debug.Log("LightSensor isn't enabled");

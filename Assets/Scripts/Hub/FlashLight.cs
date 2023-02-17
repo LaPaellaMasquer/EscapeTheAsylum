@@ -39,14 +39,13 @@ public class FlashLight : MonoBehaviour
         if (!isOn)
         {
             isOn = camManager.Call<bool>("isFlashOn");
-            transform.GetComponent<Light>().enabled = isOn;
 
             if (isOn)
             {
+                transform.GetChild(0).gameObject.SetActive(false);
+                transform.GetComponent<Light>().enabled = true;
                 PlayerPrefs.SetInt("flashlight", 1);
-                DestroyImmediate(transform.GetChild(0));
             }
         }
     }
-   
 }

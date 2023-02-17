@@ -6,52 +6,65 @@ using OpenCvSharp;
 
 public class MirrorEnigm : MonoBehaviour
 {
-    bool isCircle;
-    int nbpoint;
+    Vector2 screenSize;
     WebCamTexture mCamera = null;
+
+    Point2f center;
+    CircleSegment circle;
 
     // Start is called before the first frame update
     void Start()
     {
         mCamera = new WebCamTexture();
-        GetComponent<Image>().defaultMaterial.mainTexture = mCamera;
+
+        mCamera = new WebCamTexture();
+        GetComponent<RawImage>().defaultMaterial.mainTexture = mCamera;
         mCamera.Play();
+
+        Canvas canvas = GetComponentInParent<Canvas>();
+        screenSize = canvas.GetComponent<RectTransform>().sizeDelta;
+        GetComponent<RawImage>().rectTransform.sizeDelta = new Vector2((mCamera.width*screenSize.x)/mCamera.height, screenSize.x);
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (!mCamera.isPlaying)
+        {
+            return;
+        }
+
         Mat image = OpenCvSharp.Unity.TextureToMat(mCamera);
+        center.X = image.Width / 2;
+        center.Y = image.Height / 2;
 
         Mat grayMat = new Mat();
         Cv2.CvtColor(image, grayMat, ColorConversionCodes.BGR2GRAY);
 
-        Mat thresh = new Mat();
-        Cv2.Threshold(grayMat, thresh, 127, 255, ThresholdTypes.BinaryInv);
+        Mat blurred = new Mat();
+        Cv2.GaussianBlur(grayMat, blurred, new Size(7, 7), 0);
+        CircleSegment[] circles = Cv2.HoughCircles(blurred, HoughMethods.Gradient, 1, 20, 50, 30, 100, 200);
 
-        Point[][] contours;
-        HierarchyIndex[] hierarchy;
-        Cv2.FindContours(thresh, out contours, out hierarchy, RetrievalModes.Tree, ContourApproximationModes.ApproxNone, null);
-
-
-        foreach (Point[] contour in contours)
+        if (circles.Length!=0)
         {
-            double length = Cv2.ArcLength(contour, true);
-            Point[] approx = Cv2.ApproxPolyDP(contour, length * 0.01, true);
-            isCircle = approx.Length >= 15;
-            nbpoint = approx.Length;
+            mCamera.Pause();
+            foreach (CircleSegment c in circles)
+            {
+                circle = c;
+                Cv2.Circle(image, (int)c.Center.X, (int)c.Center.Y, (int)c.Radius, new Scalar(0, 0, 255), 2);
+                /*if(c.Center.DistanceTo(center) <= 10 && c.Radius >=100 && c.Radius <= 200)
+                {
+                    mCamera.Pause();
+                    Cv2.Circle(image, (int)c.Center.X, (int)c.Center.Y, (int)c.Radius, new Scalar(0, 0, 255), 2);
+                }*/
+            }
+            GetComponent<RawImage>().texture = OpenCvSharp.Unity.MatToTexture(image);
         }
     }
 
     private void OnGUI()
     {
         GUI.skin.label.fontSize = Screen.width / 40;
-        if (isCircle)
-        {
-            GUILayout.Label("\n\nYeah");
-        }
-
-        GUILayout.Label("\n\n\n" + nbpoint);
+        GUILayout.Label("\n\n"+ center + " " + circle.Center + " " + circle.Radius + " " + center.DistanceTo(circle.Center));
     }
-        
 }

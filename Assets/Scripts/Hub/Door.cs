@@ -5,6 +5,7 @@ using UnityEngine;
 public class Door : MonoBehaviour, MovingObject
 {
     private Rigidbody body;
+    private HingeJoint joint;
     private Vector3 prevPos;
     private bool onDrag;
 
@@ -19,7 +20,10 @@ public class Door : MonoBehaviour, MovingObject
 
         Vector3 newRotation = body.rotation.eulerAngles;
         newRotation.y += pos.z - prevPos.z > 0? 1f : -1f;
-        body.rotation = Quaternion.Euler(newRotation);
+        if(newRotation.y > joint.limits.min && newRotation.y < joint.limits.max)
+        {
+            body.rotation = Quaternion.Euler(newRotation);
+        }
         prevPos = pos;
     }
 
@@ -33,14 +37,16 @@ public class Door : MonoBehaviour, MovingObject
     void Start()
     {
         body = GetComponent<Rigidbody>();
+        body.isKinematic = true;
+        joint = GetComponent<HingeJoint>();
     }
 
-    private void OnGUI()
+    /*private void OnGUI()
     {
         GUI.skin.label.fontSize = Screen.width / 40;
         if (onDrag)
         {
             GUILayout.Label("\n\n" + body.rotation.eulerAngles);
         }
-    }
+    }*/
 }

@@ -491,6 +491,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Level
       objectReference: {fileID: 0}
+    - target: {fileID: 399780234646511069, guid: d2bb38e9375c5584ebc3488d2dd07a8e, type: 3}
+      propertyPath: m_TagString
+      value: level
+      objectReference: {fileID: 0}
     - target: {fileID: 731749372509155964, guid: d2bb38e9375c5584ebc3488d2dd07a8e, type: 3}
       propertyPath: m_Convex
       value: 0
@@ -501,6 +505,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d2bb38e9375c5584ebc3488d2dd07a8e, type: 3}
+--- !u!1 &399780233781330058 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 399780234646511069, guid: d2bb38e9375c5584ebc3488d2dd07a8e, type: 3}
+  m_PrefabInstance: {fileID: 399780233781330057}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &399780233781330059
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 399780233781330058}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57a8b52f23d937a4e8dea626af05540b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tag: level
 --- !u!1001 &6876765251843789484
 PrefabInstance:
   m_ObjectHideFlags: 0

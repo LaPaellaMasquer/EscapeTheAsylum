@@ -35,6 +35,7 @@ public class GyroCamera : MonoBehaviour
                 {
                     objectCameraDistance = hit.distance;
                     objectHold = hit.transform.GetComponent<MovingObject>();
+                    debug = hit.transform.name;
                     if (objectHold == null)
                     {
                         InteractableHubObjectInterface enigm = hit.transform.GetComponent<InteractableHubObjectInterface>();
@@ -69,5 +70,11 @@ public class GyroCamera : MonoBehaviour
     private  Vector3 GyroToUnity(Vector3 v)
     {
         return new Vector3(v.x < 0.1f && v.x > -0.1f ? 0 : -v.x, v.y < 0.1f && v.y > -0.1f ? 0 : -v.y, v.z < 0.1f && v.z > -0.1f ? 0 : v.z) ;
+    }
+
+    private void OnGUI()
+    {
+        GUI.skin.label.fontSize = Screen.width / 40;
+        GUILayout.Label("\n\n" + debug);
     }
 }

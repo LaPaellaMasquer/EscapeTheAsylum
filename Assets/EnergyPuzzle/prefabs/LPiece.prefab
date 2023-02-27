@@ -65,7 +65,7 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: c860a1182ec6d4f43b8397136716189c, type: 2}
-  - {fileID: 2100000, guid: a5cb9c041b3567249a2f65e41b211a7d, type: 2}
+  - {fileID: 2100000, guid: c860a1182ec6d4f43b8397136716189c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -674,7 +674,7 @@ PrefabInstance:
     - target: {fileID: -1292943416268681845, guid: 7cbf38111b637ab4bb71655319df6242, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: c860a1182ec6d4f43b8397136716189c, type: 2}
+      objectReference: {fileID: 2100000, guid: edc9e2196ba27284688654205d251456, type: 2}
     - target: {fileID: 919132149155446097, guid: 7cbf38111b637ab4bb71655319df6242, type: 3}
       propertyPath: m_Name
       value: EnergyPuzzleModular
@@ -686,7 +686,7 @@ PrefabInstance:
     - target: {fileID: 2735426930820958549, guid: 7cbf38111b637ab4bb71655319df6242, type: 3}
       propertyPath: m_Materials.Array.data[1]
       value: 
-      objectReference: {fileID: 2100000, guid: a5cb9c041b3567249a2f65e41b211a7d, type: 2}
+      objectReference: {fileID: 2100000, guid: c860a1182ec6d4f43b8397136716189c, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7cbf38111b637ab4bb71655319df6242, type: 3}
 --- !u!4 &5412753763487478355 stripped

@@ -126,7 +126,7 @@ PrefabInstance:
     - target: {fileID: -1292943416268681845, guid: 7cbf38111b637ab4bb71655319df6242, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: c860a1182ec6d4f43b8397136716189c, type: 2}
+      objectReference: {fileID: 2100000, guid: edc9e2196ba27284688654205d251456, type: 2}
     - target: {fileID: 919132149155446097, guid: 7cbf38111b637ab4bb71655319df6242, type: 3}
       propertyPath: m_Name
       value: EnergyPuzzleModular

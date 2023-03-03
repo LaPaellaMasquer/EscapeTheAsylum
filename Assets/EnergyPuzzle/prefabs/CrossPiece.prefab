@@ -1327,6 +1327,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6392334412688122168}
   - component: {fileID: 6116221047738961641}
+  - component: {fileID: 1095624909708149631}
   m_Layer: 0
   m_Name: CrossPiece
   m_TagString: Untagged
@@ -1371,6 +1372,19 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+--- !u!65 &1095624909708149631
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7274594340878177642}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 30.191774, y: 8.419465, z: 30.163597}
+  m_Center: {x: 0.0029535294, y: 3.177851, z: -0.020555496}
 --- !u!1 &7414629020609751963
 GameObject:
   m_ObjectHideFlags: 0

@@ -537,7 +537,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8997855537967938490, guid: 2f5517a90c912df49a779d4d4c335011, type: 3}
       propertyPath: solution
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8997855537967938490, guid: 2f5517a90c912df49a779d4d4c335011, type: 3}
       propertyPath: output.Array.data[1]
@@ -584,6 +584,7 @@ GameObject:
   - component: {fileID: 1005552178}
   - component: {fileID: 1005552177}
   - component: {fileID: 1005552180}
+  - component: {fileID: 1005552181}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -690,6 +691,18 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
+--- !u!114 &1005552181
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1005552176}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d70bba34ca8c65742a31f6aeb2e671b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1184286027
 GameObject:
   m_ObjectHideFlags: 0
@@ -1197,7 +1210,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8333150584717419429, guid: 43da362986d9fc6438adf74a8d5dbbca, type: 3}
       propertyPath: output.Array.data[0]
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8333150584717419429, guid: 43da362986d9fc6438adf74a8d5dbbca, type: 3}
       propertyPath: output.Array.data[1]
@@ -1209,12 +1222,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8333150584717419429, guid: 43da362986d9fc6438adf74a8d5dbbca, type: 3}
       propertyPath: output.Array.data[3]
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8333150584717419429, guid: 43da362986d9fc6438adf74a8d5dbbca, type: 3}
       propertyPath: neighbors.Array.data[2]
       value: 
-      objectReference: {fileID: 562857999}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 43da362986d9fc6438adf74a8d5dbbca, type: 3}
 --- !u!114 &1886840199 stripped

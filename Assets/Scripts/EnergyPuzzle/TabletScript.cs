@@ -5,37 +5,60 @@ using UnityEngine;
 public class TabletScript : MonoBehaviour
 {
 
-    public GameObject lamp1;
-    public GameObject lamp2;
+    public LedScript lamp1;
+    public LedScript lamp2;
 
-    public GameObject tab;
+    public PieceScript FirstPiece;
+    public PieceScript LastPiece;
 
-    public Material On;
-    public Material Off;
+    public PieceScript[] pieces;
+
+    public bool solved;
+
+    private bool charging, display;
+
     // Start is called before the first frame update
     void Start()
     {
-
+        FirstPiece.setFirst();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (SystemInfo.batteryStatus == BatteryStatus.Charging || SystemInfo.batteryStatus == BatteryStatus.Full)
+        charging = (SystemInfo.batteryStatus == BatteryStatus.Charging);
+        
+        if (charging)
         {
-            changeMaterial(lamp1, On);
+            lamp1.setOn(0);
+            if(!display) FirstPiece.setOn();
         }
         else
         {
-            changeMaterial(lamp1, Off);
+            lamp1.setOff(0);
+            if (!display) FirstPiece.setOff();
+        }
+
+        if (LastPiece.isLink(3) && LastPiece.getOn())
+        {
+            solved = true;
+            lamp2.setOn(0);
+        }
+        
+        if(solved && !display)
+        {
+            displaySolution();
         }
     }
 
-    void changeMaterial(GameObject o, Material m)
+    private void displaySolution()
     {
-        Material[] mats = o.GetComponent<Renderer>().materials;
-        mats[0] = m;
-        o.GetComponent<Renderer>().materials = mats;
+        foreach(PieceScript piece in pieces)
+        {
+            if(piece != null)
+                piece.display();
+        }
+        display = true;
     }
 
 }

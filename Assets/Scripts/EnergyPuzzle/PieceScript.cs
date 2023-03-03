@@ -2,19 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PieceScript : MonoBehaviour
+public class PieceScript: MonoBehaviour
 {
     public GameObject obj;
 
-    public GameObject lamp;
+    public LedScript led;
 
-    public Material mat_On;
-    public Material mat_Off;
+    private bool solved, first;
+
+    public bool solution;
 
     // outputs depends on the shape of the piece,index indicates the orientation: 0 = up, 1 = right, 2 = down, 3 = left;
-    private bool[] output = new bool[4];
+    public bool[] output = new bool[4];
 
-    public bool isOn;
+    public PieceScript[] neighbors = new PieceScript[4];
+
+    private bool isOn;
 
     // Start is called before the first frame update
     void Start()
@@ -25,49 +28,98 @@ public class PieceScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(!first && !solved) check();
+
         if (isOn)
         {
-            setOn();
+            led.setOn(1);
         }
         else
         {
-            setOff();
+            led.setOff(1);
         }
     }
 
-    private void setOn()
+    protected virtual void check()
     {
-        changeMaterial(mat_On);
+        isOn = false;
+        for(int i=0; i < 4; i++)
+        {
+            if (neighbors[i] != null && output[i])
+            {
+                if (neighbors[i].isLink(i)) isOn = neighbors[i].isOn;
+            }
+        }
     }
 
-    private void setOff()
+    public bool isLink(int neighbor)
     {
-        changeMaterial(mat_Off);
+        int index = neighborPos(neighbor);
+
+        if (output[index])
+        {
+            return true;
+        }
+        return false;
+    }
+
+    private int neighborPos(int neighbor)
+    {
+        switch (neighbor)
+        {
+            case 0: return 2;
+            case 1: return 3;
+            case 2: return 0;
+            case 3: return 1;
+            default: return -1;
+        }
+    }
+
+    public void setOn()
+    {
+        isOn = true;
+    }
+
+    public void setOff()
+    {
+        isOn = false;
+    }
+
+    public bool getOn()
+    {
+        return isOn;
     }
 
     public void rotate()
     {
-        outputShift(output);
+        outputShift();
     }
 
-    private void outputShift(bool* tab)
+    private void outputShift()
     {
         bool temp;
-        temp = tab[0];
-        tab[0] = tab[1];
-        tab[1] = tab[2];
-        tab[2] = tab[3];
-        tab[3] = temp;
+        temp = output[0];
+        output[0] = output[1];
+        output[1] = output[2];
+        output[2] = output[3];
+        output[3] = temp;
     }
+
+    public void setFirst()
     {
-
+        first = true;
     }
 
-    private void changeMaterial(Material m)
+    public void display()
     {
-        Material[] mats = lamp.GetComponent<Renderer>().materials;
-        mats[0] = m;
-        lamp.GetComponent<Renderer>().materials = mats;
-    }
+        solved = true;
 
+        if (solution)
+        {
+            setOn();
+        }
+        else{
+            setOff();
+        }
+    }
 }

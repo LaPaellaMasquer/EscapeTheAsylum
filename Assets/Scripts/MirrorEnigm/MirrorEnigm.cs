@@ -43,22 +43,20 @@ public class MirrorEnigm : MonoBehaviour
 
         Mat blurred = new Mat();
         Cv2.GaussianBlur(grayMat, blurred, new Size(7, 7), 0);
-        CircleSegment[] circles = Cv2.HoughCircles(blurred, HoughMethods.Gradient, 1, 20, 50, 30, 100, 200);
+        CircleSegment[] circles = Cv2.HoughCircles(blurred, HoughMethods.Gradient, 1, 20, 50, 30, 150, 200);
 
         if (circles.Length!=0)
         {
-            mCamera.Pause();
             foreach (CircleSegment c in circles)
             {
                 circle = c;
-                Cv2.Circle(image, (int)c.Center.X, (int)c.Center.Y, (int)c.Radius, new Scalar(0, 0, 255), 2);
-                /*if(c.Center.DistanceTo(center) <= 10 && c.Radius >=100 && c.Radius <= 200)
+                if(c.Center.DistanceTo(center) <= 10)
                 {
                     mCamera.Pause();
                     Cv2.Circle(image, (int)c.Center.X, (int)c.Center.Y, (int)c.Radius, new Scalar(0, 0, 255), 2);
-                }*/
+                    GetComponent<RawImage>().texture = OpenCvSharp.Unity.MatToTexture(image);
+                }
             }
-            GetComponent<RawImage>().texture = OpenCvSharp.Unity.MatToTexture(image);
         }
     }
 

@@ -29,7 +29,8 @@ public class FlashLight : MonoBehaviour
         }
         else
         {
-            DestroyImmediate(transform.GetChild(0));
+            transform.GetChild(0).gameObject.SetActive(false);
+            transform.GetComponent<Light>().enabled = true;
         }
     }
 

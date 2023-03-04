@@ -23,6 +23,8 @@ public class PieceScript: MonoBehaviour
     void Start()
     {
         isOn = false;
+        int i = Random.Range(1, 4);
+        for (int j = 0; j < i; j++)rotate();
     }
 
     // Update is called once per frame
@@ -93,16 +95,22 @@ public class PieceScript: MonoBehaviour
     public void rotate()
     {
         outputShift();
+        objRotation();
     }
 
     private void outputShift()
     {
         bool temp;
-        temp = output[0];
-        output[0] = output[1];
-        output[1] = output[2];
-        output[2] = output[3];
-        output[3] = temp;
+        temp = output[3];
+        output[3] = output[2];
+        output[2] = output[1];
+        output[1] = output[0];
+        output[0] = temp;
+    }
+
+    private void objRotation()
+    {
+        obj.transform.Rotate(0.0f, 90.0f, 0.0f, Space.Self);
     }
 
     public void setFirst()

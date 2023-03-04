@@ -18,11 +18,14 @@ public class PieceScript: MonoBehaviour
     public PieceScript[] neighbors = new PieceScript[4];
 
     private bool isOn;
+    private bool[] src = new bool[4];
 
     // Start is called before the first frame update
     void Start()
     {
         isOn = false;
+        int i = Random.Range(1, 4);
+        for (int j = 0; j < i; j++)rotate();
     }
 
     // Update is called once per frame
@@ -40,14 +43,24 @@ public class PieceScript: MonoBehaviour
         }
     }
 
-    protected virtual void check()
+    private void check()
     {
         isOn = false;
         for(int i=0; i < 4; i++)
         {
             if (neighbors[i] != null && output[i])
             {
-                if (neighbors[i].isLink(i)) isOn = neighbors[i].isOn;
+                if (neighbors[i].isLink(i))
+                {
+                    if (neighbors[i].isOn)
+                    {
+                        src[i] = true;
+                        isOn = true;
+                    }
+                } else
+                {
+                    src[i] = false;
+                }
             }
         }
     }
@@ -56,7 +69,7 @@ public class PieceScript: MonoBehaviour
     {
         int index = neighborPos(neighbor);
 
-        if (output[index])
+        if (output[index] && !src[index])
         {
             return true;
         }
@@ -93,16 +106,22 @@ public class PieceScript: MonoBehaviour
     public void rotate()
     {
         outputShift();
+        objRotation();
     }
 
     private void outputShift()
     {
         bool temp;
-        temp = output[0];
-        output[0] = output[1];
-        output[1] = output[2];
-        output[2] = output[3];
-        output[3] = temp;
+        temp = output[3];
+        output[3] = output[2];
+        output[2] = output[1];
+        output[1] = output[0];
+        output[0] = temp;
+    }
+
+    private void objRotation()
+    {
+        obj.transform.Rotate(0.0f, 90.0f, 0.0f, Space.Self);
     }
 
     public void setFirst()

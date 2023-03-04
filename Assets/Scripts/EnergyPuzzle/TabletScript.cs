@@ -39,7 +39,7 @@ public class TabletScript : MonoBehaviour
             if (!display) FirstPiece.setOff();
         }
 
-        if (LastPiece.isLink(3) && LastPiece.getOn())
+        if (LastPiece.isLink(2) && LastPiece.getOn())
         {
             solved = true;
             lamp2.setOn(0);

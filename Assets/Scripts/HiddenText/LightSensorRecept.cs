@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine.InputSystem; 
 using UnityEngine;
 using TMPro;
-   
+using UnityEngine.SceneManagement;
 
 public class LightSensorRecept : MonoBehaviour {
     [SerializeField]
@@ -40,6 +40,10 @@ public class LightSensorRecept : MonoBehaviour {
         }
         else  Debug.Log("Null" );
     }
+    public void ReturnToHub()
+    {
+        SceneManager.LoadScene("Hub");
+    }
     /*
     Private functions
     */
@@ -47,4 +51,5 @@ public class LightSensorRecept : MonoBehaviour {
         GUI.skin.label.fontSize = Screen.width / 40;
         GUILayout.Label("Value " +valueSensor.ToString());
     }
+    
 }

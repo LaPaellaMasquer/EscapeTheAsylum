@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using OpenCvSharp;
 using UnityEngine.SceneManagement;
+using DG.Tweening;
 
 public class MirrorEnigm : MonoBehaviour
 {
@@ -89,8 +90,12 @@ public class MirrorEnigm : MonoBehaviour
 
     private void ShowLetter()
     {
-        circleImage.SetActive(false);
-        letterText.SetActive(true);
+        circleImage.transform.DOScale(new Vector3(0.3f, 0.3f, 0.3f), 1);
+        circleImage.transform.DORotate(new Vector3(0, 0, 360), 1, RotateMode.FastBeyond360).SetRelative(true).onComplete = () =>
+        {
+            circleImage.SetActive(false);
+            letterText.SetActive(true);
+        };
     }
 
     public void ReturnToHub()

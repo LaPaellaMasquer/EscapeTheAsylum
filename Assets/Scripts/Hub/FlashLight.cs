@@ -29,8 +29,7 @@ public class FlashLight : MonoBehaviour
         }
         else
         {
-            transform.GetChild(0).gameObject.SetActive(false);
-            transform.GetComponent<Light>().enabled = true;
+            TurnflashLightOn();
         }
     }
 
@@ -43,10 +42,16 @@ public class FlashLight : MonoBehaviour
 
             if (isOn)
             {
-                transform.GetChild(0).gameObject.SetActive(false);
-                transform.GetComponent<Light>().enabled = true;
+                TurnflashLightOn();
                 PlayerPrefs.SetInt("flashlight", 1);
             }
         }
+    }
+
+    void TurnflashLightOn()
+    {
+        transform.GetChild(0).gameObject.SetActive(false);
+        transform.GetComponent<Light>().enabled = true;
+        RenderSettings.ambientIntensity = 0.15f;
     }
 }

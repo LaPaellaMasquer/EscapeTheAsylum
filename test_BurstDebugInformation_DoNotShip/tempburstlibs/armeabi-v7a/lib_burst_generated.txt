@@ -163,6 +163,7 @@ Library: lib_burst_generated
 --root-assembly=E:\PROJETS\Unity_project\EscapeTheAsylum\Temp\StagingArea\Data\Managed\Unity.Services.Core.Scheduler.dll
 --root-assembly=E:\PROJETS\Unity_project\EscapeTheAsylum\Temp\StagingArea\Data\Managed\Unity.Services.Core.Device.dll
 --root-assembly=E:\PROJETS\Unity_project\EscapeTheAsylum\Temp\StagingArea\Data\Managed\Unity.Services.Core.Analytics.dll
+--root-assembly=E:\PROJETS\Unity_project\EscapeTheAsylum\Temp\StagingArea\Data\Managed\Assembly-CSharp-firstpass.dll
 --root-assembly=E:\PROJETS\Unity_project\EscapeTheAsylum\Temp\StagingArea\Data\Managed\Unity.Services.Core.Configuration.dll
 --root-assembly=E:\PROJETS\Unity_project\EscapeTheAsylum\Temp\StagingArea\Data\Managed\Unity.Services.Core.Threading.dll
 --root-assembly=E:\PROJETS\Unity_project\EscapeTheAsylum\Temp\StagingArea\Data\Managed\Unity.Services.Core.dll

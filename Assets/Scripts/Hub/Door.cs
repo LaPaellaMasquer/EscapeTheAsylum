@@ -5,9 +5,12 @@ using UnityEngine;
 public class Door : MonoBehaviour, MovingObject
 {
     private Rigidbody body;
-    private HingeJoint joint;
     private Vector3 prevPos;
     private bool onDrag;
+    private float currAngle;
+
+    public float minAngle;
+    public float maxAngle;
 
     public void MoveObject(Vector3 pos)
     {
@@ -18,11 +21,11 @@ public class Door : MonoBehaviour, MovingObject
             return;
         }
 
-        Vector3 newRotation = transform.localEulerAngles;
-        newRotation.y += pos.z - prevPos.z > 0? 1f : -1f;
-        if(newRotation.y > joint.limits.min && newRotation.y < joint.limits.max)
+        float addAngle = pos.z - prevPos.z > 0? 1f : -1f;
+        if(currAngle + addAngle > minAngle && currAngle + addAngle < maxAngle )
         {
-            transform.localEulerAngles = newRotation;
+            transform.eulerAngles += new Vector3(0, addAngle, 0);
+            currAngle += addAngle;
         }
         prevPos = pos;
     }
@@ -38,7 +41,7 @@ public class Door : MonoBehaviour, MovingObject
     {
         body = GetComponent<Rigidbody>();
         body.isKinematic = true;
-        joint = GetComponent<HingeJoint>();
+        currAngle = 0;
     }
 
     private void OnGUI()

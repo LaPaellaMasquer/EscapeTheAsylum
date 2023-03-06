@@ -18,11 +18,11 @@ public class Door : MonoBehaviour, MovingObject
             return;
         }
 
-        Vector3 newRotation = body.rotation.eulerAngles;
+        Vector3 newRotation = transform.localEulerAngles;
         newRotation.y += pos.z - prevPos.z > 0? 1f : -1f;
         if(newRotation.y > joint.limits.min && newRotation.y < joint.limits.max)
         {
-            body.rotation = Quaternion.Euler(newRotation);
+            transform.localEulerAngles = newRotation;
         }
         prevPos = pos;
     }
@@ -41,12 +41,12 @@ public class Door : MonoBehaviour, MovingObject
         joint = GetComponent<HingeJoint>();
     }
 
-    /*private void OnGUI()
+    private void OnGUI()
     {
         GUI.skin.label.fontSize = Screen.width / 40;
         if (onDrag)
         {
-            GUILayout.Label("\n\n" + body.rotation.eulerAngles);
+            GUILayout.Label("\n\n" + transform.localEulerAngles);
         }
-    }*/
+    }
 }

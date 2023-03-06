@@ -20,7 +20,7 @@ public class VoiceListener : MonoBehaviour
     private int minFreq;
     private int maxFreq;
 
-    //float[] spectrum = new float[8192];
+    List<float> listDB = new List<float>();
     public LineRenderer lineRenderer;
     [SerializeField] AudioSource audioSource;
 
@@ -51,13 +51,7 @@ public class VoiceListener : MonoBehaviour
             if (minFreq == 0 && maxFreq == 0) // all freq authorized
             {
                 maxFreq = 44100;
-            }
-            /*
-            foreach (var device in Microphone.devices)
-            {
-                Debug.Log("Name: " + device);
-            }
-            */       
+            }      
         }
 
         samples = new float[qSamples];
@@ -66,6 +60,11 @@ public class VoiceListener : MonoBehaviour
 
         StartListen();
         audioSource.Play();
+
+        for (int i = 0; i < 10; i++)
+        {
+            listDB.Add(0);
+        }
     }
 
 
@@ -77,6 +76,7 @@ public class VoiceListener : MonoBehaviour
 
     void AnalyzeSound()
     {
+        
         audioSource.GetOutputData(samples, 0); // fill array with samples
         int i;
         float sum = 0;
@@ -87,7 +87,8 @@ public class VoiceListener : MonoBehaviour
         rmsValue = Mathf.Sqrt(sum / qSamples); // rms = square root of average
         dbValue = 20 * Mathf.Log10(rmsValue / refValue); // calculate dB
         dbValue += 160;
-        // (dbValue < -160) dbValue = -160; // clamp it to -160dB min
+         if (dbValue < 0) 
+            dbValue = 0; 
 
         audioSource.GetSpectrumData(spectrum, 0, FFTWindow.BlackmanHarris);
         float maxV = 0, currentVal = 0f;
@@ -109,18 +110,26 @@ public class VoiceListener : MonoBehaviour
             freqN += 0.5f * (dR * dR - dL * dL);
         }
         pitchValue = freqN * (fSample / 2) / qSamples; // convert index to frequency
+
+        //add current db
+        listDB.Add(dbValue);
+        listDB.RemoveAt(0);
+        //audioSource.Stop();
     }
     public void RenderLine()
     {
-        lineRenderer.positionCount = spectrum.Length;
+        int nb = listDB.Count();
+        lineRenderer.positionCount = nb;
 
-        Vector3[] listPts = new Vector3[qSamples];
-        int pos = 0;
-        for (int i = 0; i < spectrum.Length; i++)
+        Vector3[] listPts = new Vector3[nb];
+        int pos = 5;
+        for (int i = 0; i < nb; i++)
         {
-            listPts[i] = new Vector3(pos / 10, spectrum[i] / 10, 0);
-            pos += 50;
+            listPts[i] = new Vector3(pos, listDB[i]/3, 0);
+            pos += 5;
         }
+       
+
         lineRenderer.SetPositions(listPts);
     }
 
@@ -130,11 +139,6 @@ public class VoiceListener : MonoBehaviour
 
         GUILayout.Label("\n State :" + state);
 
-        /*
-        for (int i=0; i<10; i++)
-        {
-            GUILayout.Label("\n f : " + spectrum[i]);
-        }*/
          AnalyzeSound();
          GUILayout.Label("\n RMS: " + rmsValue.ToString("F2") + " (" + dbValue.ToString("F1") + " dB)\n" + "Pitch: " + pitchValue.ToString("F0") + " Hz");
 
@@ -144,7 +148,7 @@ public class VoiceListener : MonoBehaviour
     public void StartListen()
     {
         state = "StartListen";
-        audioSource.clip = Microphone.Start(null, true, 5, maxFreq);
+        audioSource.clip = Microphone.Start(null, true, 2, maxFreq);
     }
 
     public void EndListen()
@@ -157,9 +161,6 @@ public class VoiceListener : MonoBehaviour
     {
         state = "StartAudio";
         audioSource.Play();
-
-        //AudioListener.GetSpectrumData(spectrum, 0, FFTWindow.Rectangular);
-
 
 
     }

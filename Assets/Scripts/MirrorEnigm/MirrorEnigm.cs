@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using OpenCvSharp;
+using UnityEngine.SceneManagement;
 
 public class MirrorEnigm : MonoBehaviour
 {
@@ -11,6 +12,20 @@ public class MirrorEnigm : MonoBehaviour
 
     Point2f center;
     CircleSegment circle;
+
+    bool isDone;
+
+    public GameObject circleImage;
+    public GameObject letterText;
+
+    private void Awake()
+    {
+        if (!PlayerPrefs.HasKey("mirror"))
+        {
+            PlayerPrefs.SetInt("mirror", 0);
+        }
+        isDone = PlayerPrefs.GetInt("miror") != 0;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -24,16 +39,27 @@ public class MirrorEnigm : MonoBehaviour
         Canvas canvas = GetComponentInParent<Canvas>();
         screenSize = canvas.GetComponent<RectTransform>().sizeDelta;
         GetComponent<RawImage>().rectTransform.sizeDelta = new Vector2((mCamera.width*screenSize.x)/mCamera.height, screenSize.x);
+
+        if (isDone)
+        {
+            ShowLetter();
+        }
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!mCamera.isPlaying)
+        if (isDone)
         {
             return;
         }
 
+        FindCirles();
+    }
+
+    private void FindCirles()
+    {
         Mat image = OpenCvSharp.Unity.TextureToMat(mCamera);
         center.X = image.Width / 2;
         center.Y = image.Height / 2;
@@ -45,24 +71,37 @@ public class MirrorEnigm : MonoBehaviour
         Cv2.GaussianBlur(grayMat, blurred, new Size(7, 7), 0);
         CircleSegment[] circles = Cv2.HoughCircles(blurred, HoughMethods.Gradient, 1, 20, 50, 30, 150, 200);
 
-        if (circles.Length!=0)
+        if (circles.Length != 0)
         {
             foreach (CircleSegment c in circles)
             {
                 circle = c;
-                if(c.Center.DistanceTo(center) <= 10)
+                if (c.Center.DistanceTo(center) <= 10)
                 {
                     mCamera.Pause();
-                    Cv2.Circle(image, (int)c.Center.X, (int)c.Center.Y, (int)c.Radius, new Scalar(0, 0, 255), 2);
-                    GetComponent<RawImage>().texture = OpenCvSharp.Unity.MatToTexture(image);
+                    PlayerPrefs.SetInt("mirror", 1);
+                    isDone = true;
+                    ShowLetter();
                 }
             }
         }
     }
 
-    private void OnGUI()
+    private void ShowLetter()
+    {
+        circleImage.SetActive(false);
+        letterText.SetActive(true);
+    }
+
+    public void ReturnToHub()
+    {
+        mCamera.Stop();
+        SceneManager.LoadScene("Hub");
+    }
+
+    /*private void OnGUI()
     {
         GUI.skin.label.fontSize = Screen.width / 40;
         GUILayout.Label("\n\n"+ center + " " + circle.Center + " " + circle.Radius + " " + center.DistanceTo(circle.Center));
-    }
+    }*/
 }

@@ -7,16 +7,25 @@ public class CubeGestion : MonoBehaviour
     [SerializeField]
     public Material mat;//Material Associate
     [SerializeField]
-    public float limit;//Light sensor limit
+    public float limitSup;//Light sensor limit
+    [SerializeField]
+    public float limitInf;//Light sensor limit
     private float alpha;//actual alpha 
     public LightSensorRecept sensor;// actual light sensor
     public int id;
     private bool isRunning;
     private float fadeSpeed;
     private float time;
+    private bool isDone;
     // Start is called before the first frame update
     void Start()
     {
+
+        if (!PlayerPrefs.HasKey("hiddentext"))
+        {
+            PlayerPrefs.SetInt("hiddentext", 0);
+        }
+        isDone = PlayerPrefs.GetInt("hiddentext") != 0;
         SetMaterials();
         sensor = gameObject.transform.parent.GetComponent<LightSensorRecept>();
         fadeSpeed = 1.5f;
@@ -31,9 +40,9 @@ public class CubeGestion : MonoBehaviour
         time+= Time.deltaTime;
         if(!isRunning && time> 2f)//starts coroutine when alpha change
         {
-            if(sensor.ValueSensor < limit && alpha <= 0f)//illumine object
+            if(sensor.ValueSensor > limitInf && sensor.ValueSensor < limitSup && alpha <= 0f)//illumine object
                 StartCoroutine(IncreaseAlpha());
-            else if(sensor.ValueSensor > limit && alpha >= 1f)//make object darker
+            else if((sensor.ValueSensor > limitSup || sensor.ValueSensor < limitInf ) && alpha >= 1f)//make object darker
                 StartCoroutine(DecreaseAlpha());
         }
     }
@@ -45,7 +54,6 @@ public class CubeGestion : MonoBehaviour
     {
         isRunning = true;
         var mat = gameObject.GetComponent<MeshRenderer>().material;
-      //  Debug.Log("is enabled" +isRunning);
         while(alpha <=1f)
         {
             alpha += (fadeSpeed * Time.deltaTime);
@@ -93,7 +101,7 @@ public class CubeGestion : MonoBehaviour
     private void OnGUI()
     {
         GUI.skin.label.fontSize = Screen.width / 40;
-        GUI.Label(new Rect(10, 70 + id *50, 4000, 40), limit +" : Alpha " + alpha);
+        GUI.Label(new Rect(10, 70 + id *50, 4000, 40), limitSup +" : Alpha " + alpha);
        // GUILayout.Label("Value " +alpha.ToString() );
     }
 }

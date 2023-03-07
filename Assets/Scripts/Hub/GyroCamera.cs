@@ -72,9 +72,9 @@ public class GyroCamera : MonoBehaviour
         return new Vector3(v.x < 0.1f && v.x > -0.1f ? 0 : -v.x, v.y < 0.1f && v.y > -0.1f ? 0 : -v.y, v.z < 0.1f && v.z > -0.1f ? 0 : v.z) ;
     }
 
-    private void OnGUI()
+    /*private void OnGUI()
     {
         GUI.skin.label.fontSize = Screen.width / 40;
         GUILayout.Label("\n\n" + debug);
-    }
+    }*/
 }

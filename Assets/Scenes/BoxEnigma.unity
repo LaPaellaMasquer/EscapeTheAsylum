@@ -456,6 +456,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: pbr_box_med
       objectReference: {fileID: 0}
+    - target: {fileID: 154622, guid: 464802a8183dc9348be0c5e743e5e792, type: 3}
+      propertyPath: m_TagString
+      value: Box
+      objectReference: {fileID: 0}
     - target: {fileID: 457534, guid: 464802a8183dc9348be0c5e743e5e792, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -523,14 +527,14 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 154622, guid: 464802a8183dc9348be0c5e743e5e792, type: 3}
   m_PrefabInstance: {fileID: 1733068020}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1733068022
+--- !u!114 &1733068025
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1733068021}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 01362e43447e4054092eca17ab6aed23, type: 3}
   m_Name: 

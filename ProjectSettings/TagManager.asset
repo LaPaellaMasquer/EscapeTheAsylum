@@ -6,6 +6,10 @@ TagManager:
   tags:
   - Hub
   - Box
+  - Clock
+  - hour
+  - minute
+  - Music
   layers:
   - Default
   - TransparentFX

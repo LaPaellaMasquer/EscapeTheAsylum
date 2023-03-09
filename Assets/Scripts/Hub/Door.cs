@@ -44,12 +44,12 @@ public class Door : MonoBehaviour, MovingObject
         currAngle = 0;
     }
 
-    private void OnGUI()
+    /*private void OnGUI()
     {
         GUI.skin.label.fontSize = Screen.width / 40;
         if (onDrag)
         {
             GUILayout.Label("\n\n" + transform.localEulerAngles);
         }
-    }
+    }*/
 }

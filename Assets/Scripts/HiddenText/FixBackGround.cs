@@ -32,8 +32,8 @@ public class FixBackGround : MonoBehaviour
     }
 
     private void OnGUI(){
-        GUI.skin.label.fontSize = Screen.width / 40;
-        GUI.Label(new Rect(10, 450, 4000, 40),"rW" + ratioW +" : rH" + ratioH );
-         GUI.Label(new Rect(10, 500, 4000, 40),"sW" + screenWidth +" : sH" + screenHeight );
+     //   GUI.skin.label.fontSize = Screen.width / 40;
+       // GUI.Label(new Rect(10, 450, 4000, 40),"rW" + ratioW +" : rH" + ratioH );
+       //  GUI.Label(new Rect(10, 500, 4000, 40),"sW" + screenWidth +" : sH" + screenHeight );
     }
 }

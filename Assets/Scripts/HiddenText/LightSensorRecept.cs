@@ -48,8 +48,8 @@ public class LightSensorRecept : MonoBehaviour {
     Private functions
     */
     private void OnGUI(){
-        GUI.skin.label.fontSize = Screen.width / 40;
-        GUILayout.Label("Value " +valueSensor.ToString());
+    //    GUI.skin.label.fontSize = Screen.width / 40;
+      //  GUILayout.Label("Value " +valueSensor.ToString());
     }
     
 }

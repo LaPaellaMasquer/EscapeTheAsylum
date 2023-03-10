@@ -3,7 +3,27 @@ guid: 70190b31b2fd3764ca3dc955761b6cbf
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Aluminum_Anodized_Bronze
+    second: {fileID: 2100000, guid: b0b12856f17834248b17d75d4a082554, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Color_M02
+    second: {fileID: 2100000, guid: 7f5c04b82531b49458d10759f4d115c0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: clockface
+    second: {fileID: 2100000, guid: b7c1478a3057c224cbc683a85cc212be, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: clockface02
+    second: {fileID: 2100000, guid: 48e57478aa575a844977e4521a9da738, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

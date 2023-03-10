@@ -9,10 +9,16 @@ public class GyroCamera : MonoBehaviour
     float objectCameraDistance;
     string debug;
 
+    DontDestroyManager phoneManager;
+
+    private void Awake()
+    {
+        phoneManager = FindObjectOfType<DontDestroyManager>();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-
         if (SystemInfo.supportsGyroscope)
         {
             Input.gyro.enabled = true;
@@ -64,12 +70,7 @@ public class GyroCamera : MonoBehaviour
 
     void GyroModifyCamera()
     {
-        transform.Rotate(GyroToUnity(Input.gyro.rotationRateUnbiased)*2f);
-    }
-
-    private  Vector3 GyroToUnity(Vector3 v)
-    {
-        return new Vector3(v.x < 0.1f && v.x > -0.1f ? 0 : -v.x, v.y < 0.1f && v.y > -0.1f ? 0 : -v.y, v.z < 0.1f && v.z > -0.1f ? 0 : v.z) ;
+        transform.rotation = phoneManager.transform.rotation;
     }
 
     /*private void OnGUI()

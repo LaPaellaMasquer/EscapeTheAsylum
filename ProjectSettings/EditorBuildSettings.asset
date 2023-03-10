@@ -4,7 +4,13 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Hub.unity
+    guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Scenes/MirrorEnigm.unity
+    guid: 6b91e38580d573e43a3bf2680f5af101
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: 4287321ca390da74f8cf329147f77302, type: 2}
     com.unity.localization.settings: {fileID: 11400000, guid: ac8f096a84411c64e9b29e646c74002e, type: 2}

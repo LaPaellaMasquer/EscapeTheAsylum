@@ -7,7 +7,7 @@ public class VerifyPassWord : MonoBehaviour
 
     private string password;
     public GameObject inputField;
-   // public TextMeshProUGUI  texte;
+    public TextMeshProUGUI  texte;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,13 +17,21 @@ public class VerifyPassWord : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //texte.text = (password.Equals(inputField.GetComponent<TMP_InputField>().text.ToLower())).ToString();
-        if(password.Equals(inputField.GetComponent<TMP_InputField>().text.ToLower()))
-        {
-             PlayerPrefs.SetInt("hiddentext",1);
-        }
+   
+       
            
     }
 
-    
+    public void VerifPassword()
+    {
+        if(password.Equals(inputField.GetComponent<TMP_InputField>().text.ToLower()))
+        {
+            PlayerPrefs.SetInt("hiddentext",1);
+            texte.text ="Mot correct";
+        }
+        else
+        {
+            texte.text ="Mot incorrect";
+        }
+    }
 }

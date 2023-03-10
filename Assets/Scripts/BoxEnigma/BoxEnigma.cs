@@ -5,10 +5,14 @@ using UnityEngine;
 
 public class BoxEnigma : MonoBehaviour
 {
+    Vector3 PrevPos = Vector3.zero;
+    Vector3 PosDelta = Vector3.zero;
+    GameObject box;
+
     // Start is called before the first frame update
     void Start()
     {
-            StartCoroutine(VibrateDuration());
+            //StartCoroutine(VibrateDuration());
 
     }
 
@@ -78,19 +82,12 @@ public class BoxEnigma : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Began)
+        if (Input.GetMouseButton(0))
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.touches[0].position);
-            RaycastHit hit;
-
-            if(Physics.Raycast(ray, out hit))
-            {
-                if(hit.transform.tag == "Box")
-                {
-                    var objectScript = hit.collider.GetComponent<DragAndRotateBox>();
-                }
-            }
+            PosDelta = Input.mousePosition - PrevPos;
+            box.transform.Find("pbr_box_med").Rotate(box.transform.Find("pbr_box_med").up, Vector3.Dot(PosDelta, Camera.main.transform.right), Space.World);
         }
+        PrevPos = Input.mousePosition;
     }
 
     

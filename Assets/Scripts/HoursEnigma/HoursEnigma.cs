@@ -87,7 +87,7 @@ public class HoursEnigma : MonoBehaviour
         }
         else
         {
-            clockObject.transform.Find("clock1").DOMoveY(transform.position.y + 1f, 5f);
+            clockObject.transform.Find("clock").DOMoveY(transform.position.y + 1f, 5f);
         }
     }
 
@@ -102,8 +102,13 @@ public class HoursEnigma : MonoBehaviour
     {
         float radAngle = angle * Mathf.Deg2Rad;
 
-        minutes = Mathf.FloorToInt(radAngle / (2 * Mathf.PI / 60))+15;
+        minutes = Mathf.FloorToInt(radAngle / (2 * Mathf.PI / 60)%60)+15;
     }
 
+    private void OnGUI()
+    {
+        GUI.skin.label.fontSize = Screen.width / 40;
+        GUILayout.Label("\n\n"+ targetHour + "h" + targetMinute +"\n\n" + currentHour + "h" + currentMinute);
+    }
 
 }

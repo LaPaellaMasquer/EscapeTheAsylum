@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Android;
+using UnityEngine.SceneManagement;
 
 public class VoiceListener : MonoBehaviour
 {
+    bool isComplet;
+
     int qSamples = 4096;  // array size
     float refValue  = 0.1f; // RMS value for 0 dB
     float rmsValue ;   // sound level - RMS
@@ -13,20 +16,26 @@ public class VoiceListener : MonoBehaviour
     private float[] samples; // audio samples
     int nbValue = 33;
 
-    private string state;
     private int minFreq;
     private int maxFreq;
 
     List<float> listDB = new List<float>();
     public LineRenderer lineRenderer;
+
     [SerializeField] AudioSource audioSource;
 
+    void Awake()
+    {
+        if (!PlayerPrefs.HasKey("voice"))
+        {
+            PlayerPrefs.SetInt("voice", 0);
+        }
+        isComplet = PlayerPrefs.GetInt("voice") != 0;
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-        state = "waiting...";
-
         // Permissions
         if (Permission.HasUserAuthorizedPermission(Permission.Microphone))
             Debug.Log("Microphone permission !");
@@ -52,45 +61,75 @@ public class VoiceListener : MonoBehaviour
         }
 
         samples = new float[qSamples];
-
-        StartListen();
-        audioSource.Play();
+        lineRenderer.positionCount = nbValue;
 
         for (int i = 0; i < nbValue; i++)
         {
             listDB.Add(25);
         }
 
-       // Color c1 = Color.white;
-       // Color c2 = new Color(1, 1, 1, 0);
-       // lineRenderer.SetColors(c1, c2);
+        if (isComplet) // Enigm completed
+        {
+            StartCoroutine(ShowLetter());
+        }
+        else
+        {
+            StartListen();
+            StartAudio();     
+            StartCoroutine(ShowLine());
+        }
+    }
 
-        StartCoroutine(ShowLine());
+    IEnumerator ShowLetter()
+    {
+        int startX = 11, startY = 8;
+        int nbStep = nbValue-1, currentStep = 0, radius = 8;
+        float progress = 0, currentRadian = 0, xCos = 0, ySin = 0;
+        float x = 0, y = 0;
+        Vector3[] listPts = new Vector3[nbStep];
 
+        for (currentStep = 0; currentStep <= nbStep; currentStep++)
+        {
+            // calcul 1 step of cercle
+            progress = (float)currentStep / nbStep;
+            currentRadian = progress * 2 * Mathf.PI;
 
+            xCos = Mathf.Cos(currentRadian);
+            ySin = Mathf.Sin(currentRadian);
+
+            x = radius * xCos;
+            y = radius * ySin;
+
+            Vector3 currentPos = new Vector3(x+startX, y+startY, 0);
+            lineRenderer.SetPosition(currentStep, currentPos);
+
+            yield return new WaitForSeconds(.1f);
         }
 
-
-    void Update()
-    {
-
-
+        isComplet = true; 
+        PlayerPrefs.SetInt("voice", 0);
     }
 
     IEnumerator ShowLine()
     {
        while(true)
         {
-            AnalyzeSound();
-            RenderLine();
-
+            if(dbValue >= 63)
+            {
+                StartCoroutine(ShowLetter());
+                break;
+            }
+            else
+            {
+                AnalyzeSound();
+                RenderLine();
+            }  
             yield return new WaitForSeconds(.01f);
         }
     }
 
     void AnalyzeSound()
     {
-        
         audioSource.GetOutputData(samples, 0); // fill array with samples
         int i;
         float sum = 0;
@@ -101,7 +140,7 @@ public class VoiceListener : MonoBehaviour
         rmsValue = Mathf.Sqrt(sum / qSamples); // rms = square root of average
         dbValue = 20 * Mathf.Log10(rmsValue / refValue); // calculate dB
         dbValue += 160;
-        dbValue = (dbValue)*90/160; // normalize
+        dbValue = (dbValue)*100/160; // normalize
          if (dbValue < 0) 
             dbValue = 0; 
   
@@ -109,47 +148,39 @@ public class VoiceListener : MonoBehaviour
         listDB.Add(dbValue);
         listDB.RemoveAt(0);
     }
-   
+
     public void RenderLine()
     {
-        lineRenderer.positionCount = nbValue;
-
         Vector3[] listPts = new Vector3[nbValue];
-        float pos = -14;
+        float pos = 0;
         for (int i = 0; i < nbValue; i++)
         {
-            listPts[i] = new Vector3(pos, (listDB[i])/4+18, 0);
-            pos += 0.5f;
+            listPts[i] = new Vector3(pos, (listDB[i])/4, 0);
+            pos += 0.65f;
         } 
 
         lineRenderer.SetPositions(listPts);
     }
 
-    private void OnGUI()
-    {
-        GUI.skin.label.fontSize = Screen.width / 40;
-
-        GUILayout.Label("\n State :" + state);
-        GUILayout.Label("\n RMS: " + rmsValue.ToString("F2") + " (" + dbValue.ToString("F1") + " dB)\n");
-    } 
-
     public void StartListen()
     {
-        state = "StartListen";
         audioSource.clip = Microphone.Start(null, true, 1, maxFreq);
     }
 
     public void EndListen()
     {
-        state = "EndListen";
         Microphone.End(null);
     }
 
     public void StartAudio()
     {
-        state = "StartAudio";
         audioSource.Play();
-
-
     }
+
+    public void ReturnToHub()
+    {
+        EndListen();
+        SceneManager.LoadScene("Hub");
+    }
+
 }

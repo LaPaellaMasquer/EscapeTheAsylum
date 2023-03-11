@@ -5,16 +5,19 @@ using UnityEngine.SceneManagement;
 
 public class DontDestroy : MonoBehaviour
 {
+    static bool isFirst;
 
     private void Awake()
     {
-        GameObject[] levels = GameObject.FindGameObjectsWithTag(gameObject.tag);
-        if (levels.Length > 1)
+        
+        if (isFirst)
         {
-            DestroyImmediate(gameObject);
+            Destroy(gameObject);
         }
+
         DontDestroyOnLoad(gameObject);
         SceneManager.activeSceneChanged += SceneManager_activeSceneChanged;
+        isFirst = true;
     }
 
     private void SceneManager_activeSceneChanged(Scene current, Scene next)

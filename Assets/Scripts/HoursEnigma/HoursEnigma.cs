@@ -12,6 +12,7 @@ using static System.Net.Mime.MediaTypeNames;
 public class HoursEnigma : MonoBehaviour
 {
     public GameObject clock;
+    public GameObject clockObject;
     public UnityEngine.UI.Text resultText;
     private int targetHour;
     private int targetMinute;
@@ -66,8 +67,10 @@ public class HoursEnigma : MonoBehaviour
                 t.Normalize();
                 raw.Normalize();
                 Vector3 newRotation = toDrag.rotation.eulerAngles;
-                newRotation.z += (t.y>raw.y? -Mathf.Acos(Vector2.Dot(t, raw)):Mathf.Acos(Vector2.Dot(t, raw)))*2;
+                newRotation.z += (t.y>raw.y? -(Mathf.Acos(Vector2.Dot(t, raw)) * Mathf.Rad2Deg) : Mathf.Acos(Vector2.Dot(t, raw)) * Mathf.Rad2Deg);
                 toDrag.rotation = Quaternion.Euler(newRotation);
+
+                raw = t;
             }
             if (dragging && (touch.phase == TouchPhase.Ended || touch.phase == TouchPhase.Canceled))
             {
@@ -84,7 +87,7 @@ public class HoursEnigma : MonoBehaviour
         }
         else
         {
-            clock.transform.DOMove(new Vector3(0, 0, 0), 4f);
+            clockObject.transform.Find("clock").DOMoveY(transform.position.y + 1f, 5f);
         }
     }
 
@@ -99,26 +102,13 @@ public class HoursEnigma : MonoBehaviour
     {
         float radAngle = angle * Mathf.Deg2Rad;
 
-        minutes = Mathf.FloorToInt(radAngle / (2 * Mathf.PI / 60))+15;
+        minutes = Mathf.FloorToInt(radAngle / (2 * Mathf.PI / 60)%60)+15;
     }
 
     private void OnGUI()
     {
-        if (puzzleSolved)
-        {
-            GUI.color = Color.black;
-            GUI.skin.label.fontSize = Screen.width / 40;
-            GUILayout.Label("\n\nSolved");
-
-            
-        }
-        else
-        {
-            GUI.color = Color.black;
-            GUI.skin.label.fontSize = Screen.width / 40;
-            GUILayout.Label("\n\nUnsolved" + targetHour+"h " + targetMinute + "min " + currentMinute);
-        }
+        GUI.skin.label.fontSize = Screen.width / 40;
+        GUILayout.Label("\n\n"+ targetHour + "h" + targetMinute +"\n\n" + currentHour + "h" + currentMinute);
     }
-
 
 }

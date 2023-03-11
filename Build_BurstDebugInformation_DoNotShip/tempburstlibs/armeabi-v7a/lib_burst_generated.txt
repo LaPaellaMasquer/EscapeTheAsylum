@@ -141,6 +141,11 @@ Library: lib_burst_generated
 --compilation-defines=MODULE_PHYSICS_2D_EXISTS
 --compilation-defines=MODULE_PARTICLE_SYSTEM_EXISTS
 --compilation-defines=TIMELINE_FRAMEACCURATE
+--compilation-defines=PACKAGE_UGUI
+--compilation-defines=MODULE_AUDIO
+--compilation-defines=PACKAGE_TMP
+--compilation-defines=ENABLE_PROPERTY_VARIANTS
+--compilation-defines=ENABLE_ASYNC_ASSETBUNDLE_UWR
 --generate-link-xml=Temp\burst.link.xml
 --output=D:\Unity\EscapeTheAsylum\Temp\StagingArea\tempburstlibs\armeabi-v7a\lib_burst_generated
 --root-assembly=D:\Unity\EscapeTheAsylum\Temp\StagingArea\Data\Managed\UnityEngine.UI.dll
@@ -172,6 +177,11 @@ Library: lib_burst_generated
 --root-assembly=D:\Unity\EscapeTheAsylum\Temp\StagingArea\Data\Managed\Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll
 --root-assembly=D:\Unity\EscapeTheAsylum\Temp\StagingArea\Data\Managed\Unity.RenderPipelines.Core.ShaderLibrary.dll
 --root-assembly=D:\Unity\EscapeTheAsylum\Temp\StagingArea\Data\Managed\Unity.RenderPipelines.Universal.Shaders.dll
+--root-assembly=D:\Unity\EscapeTheAsylum\Temp\StagingArea\Data\Managed\Unity.Localization.dll
+--root-assembly=D:\Unity\EscapeTheAsylum\Temp\StagingArea\Data\Managed\Unity.ResourceManager.dll
+--root-assembly=D:\Unity\EscapeTheAsylum\Temp\StagingArea\Data\Managed\Unity.Addressables.dll
+--root-assembly=D:\Unity\EscapeTheAsylum\Temp\StagingArea\Data\Managed\Unity.ScriptableBuildPipeline.dll
+--root-assembly=D:\Unity\EscapeTheAsylum\Temp\StagingArea\Data\Managed\Unity.InternalAPIEngineBridge.013.dll
 --assembly-folder=D:\Unity\EscapeTheAsylum\Temp\StagingArea\Data\Managed\
 --pdb-search-paths=Temp/ManagedSymbols/
 --method=Unity.Jobs.IJobForExtensions+ForJobStruct`1[[UnityEngine.Rendering.Universal.ReorderJob`1[[UnityEngine.Rendering.Universal.LightMinMaxZ, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null::Execute(UnityEngine.Rendering.Universal.ReorderJob`1[[UnityEngine.Rendering.Universal.LightMinMaxZ, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]&, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null|System.IntPtr, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|System.IntPtr, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|Unity.Jobs.LowLevel.Unsafe.JobRanges&, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null|System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089)--e943843acfb78f5f2f3716a6553740d9

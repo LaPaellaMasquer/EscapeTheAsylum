@@ -107,7 +107,7 @@ public class VoiceListener : MonoBehaviour
         }
 
         isComplet = true; 
-        PlayerPrefs.SetInt("voice", 0);
+        PlayerPrefs.SetInt("voice", 1);
     }
 
     IEnumerator ShowLine()

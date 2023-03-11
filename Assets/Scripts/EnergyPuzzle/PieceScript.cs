@@ -103,6 +103,11 @@ public class PieceScript: MonoBehaviour
         return isOn;
     }
 
+    public void touched()
+    {
+        rotate();
+    }
+
     public void rotate()
     {
         outputShift();

@@ -19,7 +19,7 @@ public class InputDetectionScript : MonoBehaviour
             {
                 if(hit.collider != null)
                 {
-                    hit.collider.SendMessage("rotate");
+                    hit.collider.SendMessage("touched");
                 }
             }
         }
@@ -35,7 +35,7 @@ public class InputDetectionScript : MonoBehaviour
             {
                 if (hit.collider != null)
                 {
-                    hit.collider.SendMessage("rotate");
+                    hit.collider.SendMessage("touched");
                 }
             }
         }

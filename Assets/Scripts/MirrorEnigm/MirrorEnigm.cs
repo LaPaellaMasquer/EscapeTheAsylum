@@ -25,7 +25,7 @@ public class MirrorEnigm : MonoBehaviour
         {
             PlayerPrefs.SetInt("mirror", 0);
         }
-        isDone = PlayerPrefs.GetInt("miror") != 0;
+        isDone = PlayerPrefs.GetInt("mirror") != 0;
     }
 
     // Start is called before the first frame update

@@ -251,7 +251,7 @@ PrefabInstance:
     - target: {fileID: -2426320050365195372, guid: 70190b31b2fd3764ca3dc955761b6cbf, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: -8661567479122526702, guid: 70190b31b2fd3764ca3dc955761b6cbf, type: 3}
+      objectReference: {fileID: 2100000, guid: b7c1478a3057c224cbc683a85cc212be, type: 2}
     - target: {fileID: -2420678583400588896, guid: 70190b31b2fd3764ca3dc955761b6cbf, type: 3}
       propertyPath: m_Name
       value: clock1

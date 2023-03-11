@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class BoxEnigma : MonoBehaviour
 {
-    Vector3 PrevPos = Vector3.zero;
-    Vector3 PosDelta = Vector3.zero;
-    GameObject box;
+    Vector2 PrevPos = Vector2.zero;
+    Vector2 PosDelta = Vector2.zero;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -82,12 +82,22 @@ public class BoxEnigma : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButton(0))
+        if (Input.touchCount != 0)
         {
-            PosDelta = Input.mousePosition - PrevPos;
-            box.transform.Find("pbr_box_med").Rotate(box.transform.Find("pbr_box_med").up, Vector3.Dot(PosDelta, Camera.main.transform.right), Space.World);
+            Touch touch = Input.touches[0];
+            if (touch.phase == TouchPhase.Began)
+            {
+                PrevPos = touch.position;
+            }
+
+            if(touch.phase == TouchPhase.Moved)
+            {
+                PosDelta = touch.position - PrevPos;
+                Vector3 addAngle = new Vector3(PosDelta.y > 0 ? 1f : -1f, PosDelta.x < 0 ? 1f : -1f, 0f);
+                transform.eulerAngles += addAngle;
+                PrevPos = touch.position;
+            }
         }
-        PrevPos = Input.mousePosition;
     }
 
     

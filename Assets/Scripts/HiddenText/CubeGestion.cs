@@ -100,8 +100,8 @@ public class CubeGestion : MonoBehaviour
     }
     private void OnGUI()
     {
-        GUI.skin.label.fontSize = Screen.width / 40;
-        GUI.Label(new Rect(10, 70 + id *50, 4000, 40),"SensorValue" +sensor.ValueSensor  + "Limit" + limitInf + " <" + limitSup +" : Alpha " + alpha + " Location" + transform.position);
+       // GUI.skin.label.fontSize = Screen.width / 40;
+       // GUI.Label(new Rect(10, 70 + id *50, 4000, 40),"SensorValue" +sensor.ValueSensor  + "Limit" + limitInf + " <" + limitSup +" : Alpha " + alpha + " Location" + transform.position);
        // GUILayout.Label("Value " +alpha.ToString() );
     }
 }

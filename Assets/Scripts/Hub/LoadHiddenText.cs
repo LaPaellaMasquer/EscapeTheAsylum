@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Video;
@@ -17,7 +18,6 @@ public class LoadHiddenText : MonoBehaviour, InteractableHubObjectInterface
         {
             PlayerPrefs.SetInt("hiddentext", 0);
         }
-        isUnlock = PlayerPrefs.GetInt("hiddentext") != 0;
     }
     public void LoadEnigm()
     {
@@ -27,15 +27,16 @@ public class LoadHiddenText : MonoBehaviour, InteractableHubObjectInterface
     // Start is called before the first frame update
     void Start()
     {
-        if (isUnlock)
-        {
-            videoPlayer.clip = unlockVideo;
-        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
+        if (!isUnlock && PlayerPrefs.HasKey("hiddentext") && PlayerPrefs.GetInt("hiddentext") != 0)
+        {
+            videoPlayer.clip = unlockVideo;
+            isUnlock = true;
+        }
     }
 }

@@ -2112,7 +2112,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 3cb54c69eda6d734fa27b7dc604d267a, type: 2}
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4986,6 +4986,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fac5544713c835b4398c8fa1c6783619, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isOpen: 0
   videoEnd: {fileID: 5992677061344001259}
 --- !u!4 &2443969433298377630 stripped
 Transform:

@@ -27,6 +27,14 @@ MonoBehaviour:
     m_Key: Intro/Canvas/Rules
     m_Metadata:
       m_Items: []
+  - m_Id: 1380031649361920
+    m_Key: Intro/Canvas/ButtonReset/Text (TMP)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1384336146116608
+    m_Key: Intro/Canvas/ButtonStart/Text (TMP)
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

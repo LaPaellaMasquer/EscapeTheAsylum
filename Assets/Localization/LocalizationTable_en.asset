@@ -27,7 +27,17 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 10261765484544
-    m_Localized: Put your phone on a table
+    m_Localized: 'Put your phone on a table
+
+      Play with sound'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1380031649361920
+    m_Localized: Reset
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1384336146116608
+    m_Localized: Start
     m_Metadata:
       m_Items: []
   references:

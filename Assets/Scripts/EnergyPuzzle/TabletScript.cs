@@ -17,6 +17,16 @@ public class TabletScript : MonoBehaviour
 
     private bool charging, display;
 
+    public void Awake()
+    {
+        if (!PlayerPrefs.HasKey("energy"))
+        {
+            PlayerPrefs.SetInt("energy", 0);
+        }
+        solved = PlayerPrefs.GetInt("energy") != 0;
+        display = false;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -42,11 +52,12 @@ public class TabletScript : MonoBehaviour
         if (LastPiece.isLink(2) && LastPiece.getOn())
         {
             solved = true;
-            lamp2.setOn(0);
+            PlayerPrefs.SetInt("energy", 1);
         }
         
         if(solved && !display)
         {
+            lamp2.setOn(0);
             displaySolution();
         }
     }

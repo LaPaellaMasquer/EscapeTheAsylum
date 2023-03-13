@@ -27,7 +27,15 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 10261765484544
-    m_Localized: "Posez votre t\xE9l\xE9phone sur une table"
+    m_Localized: "Posez votre t\xE9l\xE9phone sur une table\nJouez avec le son"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1380031649361920
+    m_Localized: "R\xE9nitialiser"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1384336146116608
+    m_Localized: Commencer
     m_Metadata:
       m_Items: []
   references:

@@ -28,13 +28,7 @@ public class BoxText : MonoBehaviour
     {
         if (password.Equals(inputField.GetComponent<TMP_InputField>().text.ToLower()))
         {
-            PlayerPrefs.SetInt("hiddentext", 1);
-            texte.text = "Mot correct";
             cap.transform.DOLocalRotate(new Vector3(0f, -90f, 0f), 2f);
-        }
-        else
-        {
-            texte.text = "Mot incorrect";
         }
     }
 }

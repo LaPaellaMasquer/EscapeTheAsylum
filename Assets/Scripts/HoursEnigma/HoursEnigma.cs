@@ -22,7 +22,7 @@ public class HoursEnigma : MonoBehaviour
     private bool puzzleSolved = false;
     private bool dragging = false;
     private Transform toDrag;
-    private Vector3 prepos = Vector3.zero;
+    private Vector2 prepos = Vector3.zero;
     int currentHour;
     int currentMinute;
 
@@ -47,10 +47,10 @@ public class HoursEnigma : MonoBehaviour
             }
             Touch touch = Input.touches[0];
             Vector3 pos = touch.position;
-            prepos = Input.mousePosition;
 
             if (touch.phase == TouchPhase.Began)
             {
+                prepos = pos;
                 Ray ray = Camera.main.ScreenPointToRay(pos);
                 RaycastHit hit;
                 if (Physics.Raycast(ray, out hit))
@@ -65,15 +65,9 @@ public class HoursEnigma : MonoBehaviour
             }
             if (dragging && touch.phase == TouchPhase.Moved)
             {
-                Vector2 t = touch.position;
-                Vector2 raw = touch.rawPosition;
-                t.Normalize();
-                raw.Normalize();
-                Vector3 newRotation = toDrag.rotation.eulerAngles;
-                newRotation.z += (t.y>raw.y? -(Mathf.Acos(Vector2.Dot(t, raw)) * Mathf.Rad2Deg) : Mathf.Acos(Vector2.Dot(t, raw)) * Mathf.Rad2Deg);
-                toDrag.rotation = Quaternion.Euler(newRotation);
-
-                raw = t;
+                Vector2 deltPos = touch.position - prepos;
+                toDrag.Rotate(new Vector3(0f, 0f,-(deltPos.x + deltPos.y) * 0.2f));
+                prepos = touch.position;
             }
             if (dragging && (touch.phase == TouchPhase.Ended || touch.phase == TouchPhase.Canceled))
             {

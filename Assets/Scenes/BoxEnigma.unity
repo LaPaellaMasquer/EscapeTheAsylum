@@ -132,7 +132,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 201342529}
-  - component: {fileID: 201342528}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -140,18 +139,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &201342528
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 201342527}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 01362e43447e4054092eca17ab6aed23, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &201342529
 Transform:
   m_ObjectHideFlags: 0
@@ -2753,7 +2740,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 201342528}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: BoxEnigma, Assembly-CSharp
         m_MethodName: ReturnToHub
         m_Mode: 1
@@ -3350,6 +3337,18 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 457534, guid: 464802a8183dc9348be0c5e743e5e792, type: 3}
   m_PrefabInstance: {fileID: 1733068020}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1733068029
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1733068021}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01362e43447e4054092eca17ab6aed23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1808574909
 GameObject:
   m_ObjectHideFlags: 0

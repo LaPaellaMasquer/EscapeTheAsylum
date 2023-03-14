@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
+using DG.Tweening;
 
 public class BoxEnigma : MonoBehaviour
 {
@@ -26,28 +27,42 @@ public class BoxEnigma : MonoBehaviour
         int durationLong = 700;
         Vibration.Init();
 
+        float tweenVribrationstrength = 0.1f;
+        int tweenVibrato = 3;
+
         while (!finished)
         {
+            transform.DOShakePosition(durationLong / 100, tweenVribrationstrength, tweenVibrato);
             Vibration.VibrateAndroid(durationLong);
             yield return one;
+            transform.DOShakePosition(durationShort / 100, tweenVribrationstrength, tweenVibrato);
             Vibration.VibrateAndroid(durationShort);
             yield return one;
+            transform.DOShakePosition(durationShort / 100, tweenVribrationstrength, tweenVibrato);
             Vibration.VibrateAndroid(durationShort);
             yield return one;
+            transform.DOShakePosition(durationShort / 100, tweenVribrationstrength, tweenVibrato);
             Vibration.VibrateAndroid(durationShort);
             yield return two;
+            transform.DOShakePosition(durationLong / 100, tweenVribrationstrength, tweenVibrato);
             Vibration.VibrateAndroid(durationLong);
             yield return one;
+            transform.DOShakePosition(durationLong / 100, tweenVribrationstrength, tweenVibrato);
             Vibration.VibrateAndroid(durationLong);
             yield return one;
+            transform.DOShakePosition(durationLong / 100, tweenVribrationstrength, tweenVibrato);
             Vibration.VibrateAndroid(durationLong);
             yield return two;
+            transform.DOShakePosition(durationLong / 100, tweenVribrationstrength, tweenVibrato);
             Vibration.VibrateAndroid(durationLong);
             yield return one;
+            transform.DOShakePosition(durationShort / 100, tweenVribrationstrength, tweenVibrato);
             Vibration.VibrateAndroid(durationShort);
             yield return one;
+            transform.DOShakePosition(durationShort / 100, tweenVribrationstrength, tweenVibrato);
             Vibration.VibrateAndroid(durationShort);
             yield return one;
+            transform.DOShakePosition(durationLong / 100, tweenVribrationstrength, tweenVibrato);
             Vibration.VibrateAndroid(durationLong);
             yield return new WaitForSeconds(5.0f);
         }
@@ -69,8 +84,7 @@ public class BoxEnigma : MonoBehaviour
             if (touch.phase == TouchPhase.Moved)
             {
                 PosDelta = touch.position - PrevPos;
-                Vector3 addAngle = new Vector3(PosDelta.y > 0 ? 1f : -1f, PosDelta.x < 0 ? 1f : -1f, 0f);
-                transform.eulerAngles += addAngle;
+                transform.Rotate(new Vector3(0f, -PosDelta.y * 0.2f, -PosDelta.x * 0.2f));
                 PrevPos = touch.position;
             }
         }

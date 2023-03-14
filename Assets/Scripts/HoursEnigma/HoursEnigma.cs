@@ -5,6 +5,7 @@ using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 using DG.Tweening;
 
 using static System.Net.Mime.MediaTypeNames;
@@ -13,6 +14,8 @@ public class HoursEnigma : MonoBehaviour
 {
     public GameObject clock;
     public GameObject clockObject;
+    public GameObject min;
+    public GameObject hour;
     public UnityEngine.UI.Text resultText;
     private int targetHour;
     private int targetMinute;
@@ -87,7 +90,10 @@ public class HoursEnigma : MonoBehaviour
         }
         else
         {
-            clockObject.transform.Find("clock").DOMoveY(transform.position.y + 1f, 5f);
+
+            min.transform.DOLocalRotate(new Vector3(90f, 70f, -200f), 2f);
+            hour.transform.DOLocalRotate(new Vector3(90f, -70f, 26f), 2f);
+            clockObject.transform.DOMoveY(1.5f, 2f);
         }
     }
 
@@ -95,20 +101,20 @@ public class HoursEnigma : MonoBehaviour
     {
         float radAngle = angle * Mathf.Deg2Rad;
 
-        hours = (Mathf.FloorToInt(radAngle / (2 * Mathf.PI / 12)) % 12)+3;
+        hours = (Mathf.FloorToInt(radAngle / (2 * Mathf.PI / 12)) + 3) % 12;
     }
 
     public void CalculateTimeFromAngleMinute(float angle, out int minutes)
     {
         float radAngle = angle * Mathf.Deg2Rad;
 
-        minutes = Mathf.FloorToInt(radAngle / (2 * Mathf.PI / 60)%60)+15;
+        minutes = Mathf.FloorToInt(radAngle / (2 * Mathf.PI / 60) + 15) % 60;
     }
 
-    private void OnGUI()
+
+    public void ReturnToHub()
     {
-        GUI.skin.label.fontSize = Screen.width / 40;
-        GUILayout.Label("\n\n"+ targetHour + "h" + targetMinute +"\n\n" + currentHour + "h" + currentMinute);
+        SceneManager.LoadScene("Hub");
     }
 
 }

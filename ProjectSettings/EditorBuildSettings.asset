@@ -20,7 +20,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/HiddenText.unity
     guid: 3c67e887bc883b1468fd3518a0af9a80
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Hour.unity
     guid: a139b5b917d8dde46bf1a7202856dc42
   - enabled: 0

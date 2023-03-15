@@ -32,10 +32,19 @@ public class BoxEnigma : MonoBehaviour
 
         while (!finished)
         {
+
             transform.DOShakePosition(durationLong / 100, tweenVribrationstrength, tweenVibrato);
+
+            Debug.Log("vibre");
+
             Vibration.VibrateAndroid(durationLong);
+            Debug.Log("vibre2");
             yield return one;
+
             transform.DOShakePosition(durationShort / 100, tweenVribrationstrength, tweenVibrato);
+
+            Debug.Log("vibre3");
+
             Vibration.VibrateAndroid(durationShort);
             yield return one;
             transform.DOShakePosition(durationShort / 100, tweenVribrationstrength, tweenVibrato);

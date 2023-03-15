@@ -40,6 +40,18 @@ MonoBehaviour:
     m_Localized: Start
     m_Metadata:
       m_Items: []
+  - m_Id: 2169920560603136
+    m_Localized: 
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2180630489374720
+    m_Localized: Incorrect Word
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2175800098201600
+    m_Localized: Correct Word
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

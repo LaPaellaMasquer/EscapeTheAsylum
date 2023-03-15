@@ -38,6 +38,14 @@ MonoBehaviour:
     m_Localized: Commencer
     m_Metadata:
       m_Items: []
+  - m_Id: 2180630489374720
+    m_Localized: Mot Incorrect
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2175800098201600
+    m_Localized: Mot Correct
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

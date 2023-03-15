@@ -38,12 +38,12 @@ MonoBehaviour:
     m_Localized: Commencer
     m_Metadata:
       m_Items: []
-  - m_Id: 1873685556047872
-    m_Localized: Commencer
+  - m_Id: 2180630489374720
+    m_Localized: Mot Incorrect
     m_Metadata:
       m_Items: []
-  - m_Id: 1875210231689216
-    m_Localized: "R\xE9nitialiser"
+  - m_Id: 2175800098201600
+    m_Localized: Mot Correct
     m_Metadata:
       m_Items: []
   references:

@@ -35,12 +35,20 @@ MonoBehaviour:
     m_Key: Intro/Canvas/ButtonStart/Text (TMP)
     m_Metadata:
       m_Items: []
-  - m_Id: 1873685556047872
-    m_Key: Intro/Canvas/Button/Text (TMP)
+  - m_Id: 2169920560603136
+    m_Key: HiddenText/Canvas/Text (TMP)
     m_Metadata:
       m_Items: []
-  - m_Id: 1875210231689216
-    m_Key: Intro/Canvas/Button/Text (TMP) 1
+  - m_Id: 2170606497079296
+    m_Key: New Entry
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2175800098201600
+    m_Key: GoodWordHiddenText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2180630489374720
+    m_Key: BadWordHiddenText
     m_Metadata:
       m_Items: []
   m_Metadata:

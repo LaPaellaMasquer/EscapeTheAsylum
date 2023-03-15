@@ -5,6 +5,7 @@ using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 using DG.Tweening;
 
 using static System.Net.Mime.MediaTypeNames;
@@ -13,13 +14,15 @@ public class HoursEnigma : MonoBehaviour
 {
     public GameObject clock;
     public GameObject clockObject;
+    public GameObject min;
+    public GameObject hour;
     public UnityEngine.UI.Text resultText;
     private int targetHour;
     private int targetMinute;
     private bool puzzleSolved = false;
     private bool dragging = false;
     private Transform toDrag;
-    private Vector3 prepos = Vector3.zero;
+    private Vector2 prepos = Vector3.zero;
     int currentHour;
     int currentMinute;
 
@@ -44,10 +47,10 @@ public class HoursEnigma : MonoBehaviour
             }
             Touch touch = Input.touches[0];
             Vector3 pos = touch.position;
-            prepos = Input.mousePosition;
 
             if (touch.phase == TouchPhase.Began)
             {
+                prepos = pos;
                 Ray ray = Camera.main.ScreenPointToRay(pos);
                 RaycastHit hit;
                 if (Physics.Raycast(ray, out hit))
@@ -62,15 +65,9 @@ public class HoursEnigma : MonoBehaviour
             }
             if (dragging && touch.phase == TouchPhase.Moved)
             {
-                Vector2 t = touch.position;
-                Vector2 raw = touch.rawPosition;
-                t.Normalize();
-                raw.Normalize();
-                Vector3 newRotation = toDrag.rotation.eulerAngles;
-                newRotation.z += (t.y>raw.y? -(Mathf.Acos(Vector2.Dot(t, raw)) * Mathf.Rad2Deg) : Mathf.Acos(Vector2.Dot(t, raw)) * Mathf.Rad2Deg);
-                toDrag.rotation = Quaternion.Euler(newRotation);
-
-                raw = t;
+                Vector2 deltPos = touch.position - prepos;
+                toDrag.Rotate(new Vector3(0f, 0f,-(deltPos.x + deltPos.y) * 0.2f));
+                prepos = touch.position;
             }
             if (dragging && (touch.phase == TouchPhase.Ended || touch.phase == TouchPhase.Canceled))
             {
@@ -87,7 +84,10 @@ public class HoursEnigma : MonoBehaviour
         }
         else
         {
-            clockObject.transform.Find("clock").DOMoveY(transform.position.y + 1f, 5f);
+
+            min.transform.DOLocalRotate(new Vector3(90f, 70f, -200f), 2f);
+            hour.transform.DOLocalRotate(new Vector3(90f, -70f, 26f), 2f);
+            clockObject.transform.DOMoveY(1.5f, 2f);
         }
     }
 
@@ -95,20 +95,20 @@ public class HoursEnigma : MonoBehaviour
     {
         float radAngle = angle * Mathf.Deg2Rad;
 
-        hours = (Mathf.FloorToInt(radAngle / (2 * Mathf.PI / 12)) % 12)+3;
+        hours = (Mathf.FloorToInt(radAngle / (2 * Mathf.PI / 12)) + 3) % 12;
     }
 
     public void CalculateTimeFromAngleMinute(float angle, out int minutes)
     {
         float radAngle = angle * Mathf.Deg2Rad;
 
-        minutes = Mathf.FloorToInt(radAngle / (2 * Mathf.PI / 60)%60)+15;
+        minutes = Mathf.FloorToInt(radAngle / (2 * Mathf.PI / 60) + 15) % 60;
     }
 
-    private void OnGUI()
+
+    public void ReturnToHub()
     {
-        GUI.skin.label.fontSize = Screen.width / 40;
-        GUILayout.Label("\n\n"+ targetHour + "h" + targetMinute +"\n\n" + currentHour + "h" + currentMinute);
+        SceneManager.LoadScene("Hub");
     }
 
 }

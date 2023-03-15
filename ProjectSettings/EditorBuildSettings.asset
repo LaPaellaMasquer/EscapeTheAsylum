@@ -5,10 +5,10 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Intro.unity
     guid: a525770e26e5e794bae09d0dfe3b94bf
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Hub.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 0
@@ -20,7 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/HiddenText.unity
     guid: 3c67e887bc883b1468fd3518a0af9a80
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Hour.unity
     guid: a139b5b917d8dde46bf1a7202856dc42
   - enabled: 0

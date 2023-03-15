@@ -105,6 +105,7 @@ public class PieceScript: MonoBehaviour
 
     public void touched()
     {
+        isOn = false;
         rotate();
     }
 

@@ -51,15 +51,22 @@ public class TabletScript : MonoBehaviour
 
         if (LastPiece.isLink(2) && LastPiece.getOn())
         {
-            solved = true;
-            PlayerPrefs.SetInt("energy", 1);
+            StartCoroutine(WaitCoroutine());
         }
         
-        if(solved && !display)
+        if(solved)
         {
             lamp2.setOn(0);
             displaySolution();
         }
+    }
+
+    IEnumerator WaitCoroutine()
+    {
+        yield return new WaitForSeconds(5);
+
+        solved = true;
+        PlayerPrefs.SetInt("energy", 1);
     }
 
     private void displaySolution()

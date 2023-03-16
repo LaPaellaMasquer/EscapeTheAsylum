@@ -32,8 +32,8 @@ public class HoursEnigma : MonoBehaviour
         AndroidJavaObject calendarInstance = calendarClass.CallStatic<AndroidJavaObject>("getInstance");
         targetHour = (calendarInstance.Call<int>("get", 11))%12;
         targetMinute = calendarInstance.Call<int>("get", 12);
-        clock.transform.Find("HourHand").Rotate(Vector3.forward, 0f);
-        clock.transform.Find("MinuteHand").Rotate(Vector3.forward, 0f);
+        hour.transform.Rotate(Vector3.forward, 0f);
+        min.transform.Rotate(Vector3.forward, 0f);
     }
 
     void Update()
@@ -71,8 +71,8 @@ public class HoursEnigma : MonoBehaviour
             }
             if (dragging && (touch.phase == TouchPhase.Ended || touch.phase == TouchPhase.Canceled))
             {
-                CalculateTimeFromAngleHour(clock.transform.Find("HourHand").rotation.eulerAngles.z, out currentHour);
-                CalculateTimeFromAngleMinute(clock.transform.Find("MinuteHand").rotation.eulerAngles.z, out currentMinute);
+                CalculateTimeFromAngleHour(hour.transform.rotation.eulerAngles.z, out currentHour);
+                CalculateTimeFromAngleMinute(min.transform.rotation.eulerAngles.z, out currentMinute);
                 if (currentHour < targetHour + 0.5 && currentHour > targetHour - 0.5 && currentMinute < targetMinute + 5 && currentMinute > targetMinute - 5)
                 {
                     puzzleSolved = true;

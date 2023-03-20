@@ -37,14 +37,15 @@ public class VoiceListener : MonoBehaviour
     void Start()
     {
         // Permissions
-        if (Permission.HasUserAuthorizedPermission(Permission.Microphone))
+       /*
+        * if (Permission.HasUserAuthorizedPermission(Permission.Microphone))
             Debug.Log("Microphone permission !");
         else
         {
             Permission.RequestUserPermission(Permission.Microphone);
             Debug.Log("No Microphone permission !");
         }
-
+       */
         // Check Microphone
         if (Microphone.devices.Length <= 0)
         {
@@ -140,7 +141,7 @@ public class VoiceListener : MonoBehaviour
         rmsValue = Mathf.Sqrt(sum / qSamples); // rms = square root of average
         dbValue = 20 * Mathf.Log10(rmsValue / refValue); // calculate dB
         dbValue += 160;
-        dbValue = (dbValue)*100/160; // normalize
+        dbValue = (dbValue)*95/160; // normalize
          if (dbValue < 0) 
             dbValue = 0; 
   

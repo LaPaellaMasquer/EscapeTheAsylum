@@ -26,9 +26,38 @@ public class PieceScript: MonoBehaviour
         isOn = false;
         int i = Random.Range(1, 4);
         for (int j = 0; j < i; j++)rotate();
+
+        //StartCoroutine(CheckPiece());
     }
 
-    // Update is called once per frame
+    /*IEnumerator CheckPiece()
+    {
+
+        while (true)
+        {
+           
+            if (!first && !solved)
+            {
+                isOn = false;
+                yield return null;
+                check();
+            }
+
+            if (isOn)
+            {
+                led.setOn(1);
+            }
+            else
+            {
+                led.setOff(1);
+            }
+            yield return null;
+        }
+    }
+    */
+
+
+        // Update is called once per frame
     void Update()
     {
         if(!first && !solved) check();
@@ -41,17 +70,19 @@ public class PieceScript: MonoBehaviour
         {
             led.setOff(1);
         }
+        
     }
 
-    private void check()
+    public void check()
     {
         isOn = false;
-        for(int i=0; i < 4; i++)
+        for (int i=0; i < 4; i++)
         {
             if (neighbors[i] != null && output[i])
             {
                 if (neighbors[i].isLink(i))
                 {
+                    //neighbors[i].check();
                     if (neighbors[i].isOn)
                     {
                         src[i] = true;
@@ -69,7 +100,7 @@ public class PieceScript: MonoBehaviour
     {
         int index = neighborPos(neighbor);
 
-        if (output[index] && !src[index])
+        if (output[index] && !src[index])//
         {
             return true;
         }

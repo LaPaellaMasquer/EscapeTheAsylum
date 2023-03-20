@@ -115,7 +115,7 @@ public class VoiceListener : MonoBehaviour
     {
        while(true)
         {
-            if(dbValue >= 63)
+            if(dbValue >= 62)
             {
                 StartCoroutine(ShowLetter());
                 break;

@@ -52,6 +52,46 @@ MonoBehaviour:
     m_Localized: Correct Word
     m_Metadata:
       m_Items: []
+  - m_Id: 4348538657779712
+    m_Localized: 
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4356039797190656
+    m_Localized: "\rCalm has no place here !"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4357243910565888
+    m_Localized: Retrouve ma silhouette
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4359293192974336
+    m_Localized: Only day and night will make sense of the puzzles
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4359611192520704
+    m_Localized: How fast are you vibrating?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4359801970438144
+    m_Localized: Some energy?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4359991779471360
+    m_Localized: 'Am I on time?
+
+'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4360959455735808
+    m_Localized: 'Find my figure
+
+'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4361076053192704
+    m_Localized: "\rCalm has no place here !"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

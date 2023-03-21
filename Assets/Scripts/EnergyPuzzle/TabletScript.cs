@@ -63,7 +63,7 @@ public class TabletScript : MonoBehaviour
 
     IEnumerator WaitCoroutine()
     {
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(2);
 
         solved = true;
         PlayerPrefs.SetInt("energy", 1);

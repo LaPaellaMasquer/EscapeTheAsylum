@@ -51,6 +51,42 @@ MonoBehaviour:
     m_Key: BadWordHiddenText
     m_Metadata:
       m_Items: []
+  - m_Id: 4348538657779712
+    m_Key: BoxEnigma/Canvas/Panel/Hint/Text (TMP)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4356039797190656
+    m_Key: VoiceEnigm/Canvas/Panel/Hint/Text (TMP)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4357243910565888
+    m_Key: MirrorEnigm/Canvas/Panel/Hint/Text (TMP)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4359293192974336
+    m_Key: HiddenText/Canvas/Panel/Hint/Text (TMP)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4359611192520704
+    m_Key: BoxEnigma/Canvas/Panel/Hint/Text (TMP) 1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4359801970438144
+    m_Key: EnergyPuzzle/Canvas/Panel/Hint/Text (TMP)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4359991779471360
+    m_Key: Hour/Canvas/Panel/Hint/Text (TMP)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4360959455735808
+    m_Key: MirrorEnigm/Canvas/Panel/Hint/Text (TMP) 1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4361076053192704
+    m_Key: VoiceEnigm/Canvas/Panel/Hint/Text (TMP) 1
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

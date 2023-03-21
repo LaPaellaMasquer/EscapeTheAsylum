@@ -35,15 +35,10 @@ public class BoxEnigma : MonoBehaviour
 
             transform.DOShakePosition(durationLong / 100, tweenVribrationstrength, tweenVibrato);
 
-            Debug.Log("vibre");
-
             Vibration.VibrateAndroid(durationLong);
-            Debug.Log("vibre2");
             yield return one;
 
             transform.DOShakePosition(durationShort / 100, tweenVribrationstrength, tweenVibrato);
-
-            Debug.Log("vibre3");
 
             Vibration.VibrateAndroid(durationShort);
             yield return one;
@@ -104,11 +99,11 @@ public class BoxEnigma : MonoBehaviour
         finished= true;
         SceneManager.LoadScene("Hub");
     }
-
+    /*
     private void OnGUI()
     {
         GUI.skin.label.fontSize = Screen.width / 40;
         GUILayout.Label("\n\n" + SystemInfo.operatingSystem + "\n" + Vibration.AndroidVersion);
     }
-
+    */
 }

@@ -105,5 +105,10 @@ public class BoxEnigma : MonoBehaviour
         SceneManager.LoadScene("Hub");
     }
 
+    private void OnGUI()
+    {
+        GUI.skin.label.fontSize = Screen.width / 40;
+        GUILayout.Label("\n\n" + SystemInfo.operatingSystem + "\n" + Vibration.AndroidVersion);
+    }
 
 }

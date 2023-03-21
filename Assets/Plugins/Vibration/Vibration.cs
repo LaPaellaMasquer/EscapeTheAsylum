@@ -150,8 +150,16 @@ public static class Vibration
         if ( Application.isMobilePlatform ) {
             if ( AndroidVersion >= 26 ) {
                 AndroidJavaObject createOneShot = vibrationEffect.CallStatic<AndroidJavaObject> ( "createOneShot", milliseconds, -1 );
-                vibrator.Call ( "vibrate", createOneShot );
-
+                if (AndroidVersion >= 33)
+                {
+                    AndroidJavaClass VibrationAttributes = new AndroidJavaClass("android.os.VibrationAttributes");
+                    AndroidJavaObject usage = VibrationAttributes.CallStatic<AndroidJavaObject>("createForUsage", VibrationAttributes.GetStatic<int>("USAGE_MEDIA"));
+                    vibrator.Call("vibrate", createOneShot, usage);
+                }
+                else
+                {
+                    vibrator.Call("vibrate", createOneShot);
+                }
             } else {
                 vibrator.Call ( "vibrate", milliseconds );
             }

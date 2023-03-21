@@ -5,28 +5,28 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Intro.unity
     guid: a525770e26e5e794bae09d0dfe3b94bf
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Hub.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
     path: Assets/Scenes/BoxEnigma.unity
     guid: 274de0b37a1651546824bcf1af784dc6
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/EnergyPuzzle.unity
     guid: 6c8f9cb1e7353f341b2d4651fe3b9de0
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/HiddenText.unity
     guid: 3c67e887bc883b1468fd3518a0af9a80
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Hour.unity
     guid: a139b5b917d8dde46bf1a7202856dc42
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/MirrorEnigm.unity
     guid: 6b91e38580d573e43a3bf2680f5af101
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/VoiceEnigm.unity
     guid: b95ea9c2d56bf3f4a8dc5cde72f630e6
   m_configObjects:

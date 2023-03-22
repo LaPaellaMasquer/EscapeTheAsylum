@@ -1597,6 +1597,18 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4330831274302981781, guid: 77a8930f5f84a01488bdb7cdb7eef639, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1733068029}
+    - target: {fileID: 4330831274302981781, guid: 77a8930f5f84a01488bdb7cdb7eef639, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ShowHint
+      objectReference: {fileID: 0}
+    - target: {fileID: 4330831274302981781, guid: 77a8930f5f84a01488bdb7cdb7eef639, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: BoxEnigma, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 4330831275067221330, guid: 77a8930f5f84a01488bdb7cdb7eef639, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -1766,6 +1778,16 @@ MonoBehaviour:
           m_WaitForCompletion: 0
           m_LocalVariables: []
         m_PropertyPath: m_text
+--- !u!1 &818745338 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4330831274302981778, guid: 77a8930f5f84a01488bdb7cdb7eef639, type: 3}
+  m_PrefabInstance: {fileID: 818745333}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &818745339 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4330831273992751365, guid: 77a8930f5f84a01488bdb7cdb7eef639, type: 3}
+  m_PrefabInstance: {fileID: 818745333}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &832402463
 GameObject:
   m_ObjectHideFlags: 0
@@ -3698,6 +3720,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01362e43447e4054092eca17ab6aed23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  panel: {fileID: 818745339}
+  button: {fileID: 818745338}
 --- !u!1 &1808574909
 GameObject:
   m_ObjectHideFlags: 0

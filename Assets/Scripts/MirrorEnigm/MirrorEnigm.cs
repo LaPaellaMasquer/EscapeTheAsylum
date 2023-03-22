@@ -5,9 +5,22 @@ using UnityEngine.UI;
 using OpenCvSharp;
 using UnityEngine.SceneManagement;
 using DG.Tweening;
+using static UnityEngine.Rendering.DebugUI;
+using System;
+using TMPro;
+using Unity.VisualScripting;
 
 public class MirrorEnigm : MonoBehaviour
 {
+    // hint
+    [SerializeField] GameObject panel;
+    [SerializeField] GameObject button;
+    bool showed;
+    bool available = false;
+    DateTime lastTime;
+    float deltaTime;
+    float timeLeft;
+
     Vector2 screenSize;
     WebCamTexture mCamera = null;
 
@@ -46,6 +59,69 @@ public class MirrorEnigm : MonoBehaviour
             ShowLetter();
         }
 
+        // =============== hint ====================
+        showed = false;
+
+        if (!PlayerPrefs.HasKey("hintMirror"))
+        {
+            PlayerPrefs.SetFloat("hintMirror", 300);
+        }
+        timeLeft = PlayerPrefs.GetFloat("hintMirror");
+
+        if (timeLeft > 0)
+        {
+            StartCoroutine(ShowButton());
+        }
+        else
+        {
+            PlayerPrefs.SetFloat("hintMirror", 0);
+            button.GetComponent<Image>().color = new Color(1, 1, 1, 1);
+            button.transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = new Color(1, 1, 1, 1);
+            available = true;
+        }
+
+    }
+
+    void OnApplicationFocus(bool hasFocus)
+    {
+        float deltaTime = 0;
+        if (hasFocus)
+        {
+            lastTime = DateTime.Now;
+        }
+        else
+        {
+            SaveTime();
+        }
+    }
+
+    void SaveTime()
+    {
+        float deltaTime = DateTime.Now.Subtract(lastTime).Minutes * 60 + DateTime.Now.Subtract(lastTime).Seconds;
+        float time = timeLeft - deltaTime;
+        if (time < 0)
+        {
+            time = 0;
+        }
+        PlayerPrefs.SetFloat("hintMirror", time);
+    }
+
+    IEnumerator ShowButton()
+    {
+        lastTime = DateTime.Now;
+        yield return new WaitForSeconds(timeLeft);
+        button.GetComponent<Image>().color = new Color(1, 1, 1, 1);
+        button.transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = new Color(1, 1, 1, 1);
+        available = true;
+    }
+
+    public void ShowHint()
+    {
+        if (available)
+        {
+            showed = !showed;
+            panel.SetActive(showed);
+        }
     }
 
     // Update is called once per frame

@@ -1299,6 +1299,18 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4330831274302981781, guid: 77a8930f5f84a01488bdb7cdb7eef639, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1707445317}
+    - target: {fileID: 4330831274302981781, guid: 77a8930f5f84a01488bdb7cdb7eef639, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ShowHint
+      objectReference: {fileID: 0}
+    - target: {fileID: 4330831274302981781, guid: 77a8930f5f84a01488bdb7cdb7eef639, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: LightSensorRecept, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 4330831275067221330, guid: 77a8930f5f84a01488bdb7cdb7eef639, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -1413,6 +1425,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 77a8930f5f84a01488bdb7cdb7eef639, type: 3}
+--- !u!1 &1321862308 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4330831274302981778, guid: 77a8930f5f84a01488bdb7cdb7eef639, type: 3}
+  m_PrefabInstance: {fileID: 1321862307}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1321862309 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4330831273992751365, guid: 77a8930f5f84a01488bdb7cdb7eef639, type: 3}
+  m_PrefabInstance: {fileID: 1321862307}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1359283517 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 850804ea3d13dae4f93977d2569ae693, type: 3}
@@ -1717,6 +1739,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d66b97eeb13aa2440ae2fe0bd0a682a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  panel: {fileID: 1321862309}
+  button: {fileID: 1321862308}
   tmp: {fileID: 0}
   cubeConteneur: {fileID: 0}
 --- !u!114 &1707445318

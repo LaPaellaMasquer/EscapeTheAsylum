@@ -4,8 +4,21 @@ using UnityEngine.InputSystem;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
+using static UnityEngine.Rendering.DebugUI;
+using System;
+using Unity.VisualScripting;
 
 public class LightSensorRecept : MonoBehaviour {
+
+    // hint
+    [SerializeField] GameObject panel;
+    [SerializeField] GameObject button;
+    bool showed;
+    bool available = false;
+    DateTime lastTime;
+    float deltaTime;
+    float timeLeft;
+
     [SerializeField]
     TextMeshProUGUI tmp;
     [SerializeField]
@@ -23,9 +36,72 @@ public class LightSensorRecept : MonoBehaviour {
     void Start()
     {
         InputSystem.EnableDevice(LightSensor.current);
+        // =============== hint ====================
+        showed = false;
+
+        if (!PlayerPrefs.HasKey("hintText"))
+        {
+            PlayerPrefs.SetFloat("hintText", 300);
+        }
+        timeLeft = PlayerPrefs.GetFloat("hintText");
+
+        if (timeLeft > 0)
+        {
+            StartCoroutine(ShowButton());
+        }
+        else
+        {
+            PlayerPrefs.SetFloat("hintText", 0);
+            button.GetComponent<UnityEngine.UI.Image>().color = new Color(1, 1, 1, 1);
+            button.transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = new Color(1, 1, 1, 1);
+            available = true;
+        }
+
     }
 
-    // Update is called once per frame
+    void OnApplicationFocus(bool hasFocus)
+    {
+        float deltaTime = 0;
+        if (hasFocus)
+        {
+            lastTime = DateTime.Now;
+        }
+        else
+        {
+            SaveTime();
+        }
+    }
+
+    void SaveTime()
+    {
+        float deltaTime = DateTime.Now.Subtract(lastTime).Minutes * 60 + DateTime.Now.Subtract(lastTime).Seconds;
+        float time = timeLeft - deltaTime;
+        if (time < 0)
+        {
+            time = 0;
+        }
+        PlayerPrefs.SetFloat("hintText", time);
+    }
+
+    IEnumerator ShowButton()
+    {
+        lastTime = DateTime.Now;
+        yield return new WaitForSeconds(timeLeft);
+        button.GetComponent<UnityEngine.UI.Image>().color = new Color(1, 1, 1, 1);
+        button.transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = new Color(1, 1, 1, 1);
+        available = true;
+    }
+
+    public void ShowHint()
+    {
+        if (available)
+        {
+            showed = !showed;
+            panel.SetActive(showed);
+        }
+    }
+
+        // Update is called once per frame
     void Update()
     {
 

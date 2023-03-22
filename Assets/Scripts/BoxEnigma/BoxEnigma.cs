@@ -4,9 +4,19 @@ using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
 using DG.Tweening;
+using TMPro;
 
 public class BoxEnigma : MonoBehaviour
 {
+    // hint
+    [SerializeField] GameObject panel;
+    [SerializeField] GameObject button;
+    bool showed;
+    bool available = false;
+    DateTime lastTime;
+    float deltaTime;
+    float timeLeft;
+
     Vector2 PrevPos = Vector2.zero;
     Vector2 PosDelta = Vector2.zero;
     bool finished = false;
@@ -17,6 +27,69 @@ public class BoxEnigma : MonoBehaviour
     {
         StartCoroutine(VibrateDuration());
 
+        // =============== hint ====================
+        showed = false;
+
+        if (!PlayerPrefs.HasKey("hintBox"))
+        {
+            PlayerPrefs.SetFloat("hintBox", 300);
+        }
+        timeLeft = PlayerPrefs.GetFloat("hintBox");
+
+        if (timeLeft > 0)
+        {
+            StartCoroutine(ShowButton());
+        }
+        else
+        {
+            PlayerPrefs.SetFloat("hintBox", 0);
+            button.GetComponent<UnityEngine.UI.Image>().color = new Color(1, 1, 1, 1);
+            button.transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = new Color(1, 1, 1, 1);
+            available = true;
+        }
+
+    }
+
+    void OnApplicationFocus(bool hasFocus)
+    {
+        float deltaTime = 0;
+        if (hasFocus)
+        {
+            lastTime = DateTime.Now;
+        }
+        else
+        {
+            SaveTime();
+        }
+    }
+
+    void SaveTime()
+    {
+        float deltaTime = DateTime.Now.Subtract(lastTime).Minutes * 60 + DateTime.Now.Subtract(lastTime).Seconds;
+        float time = timeLeft - deltaTime;
+        if (time < 0)
+        {
+            time = 0;
+        }
+        PlayerPrefs.SetFloat("hintBox", time);
+    }
+
+    IEnumerator ShowButton()
+    {
+        lastTime = DateTime.Now;
+        yield return new WaitForSeconds(timeLeft);
+        button.GetComponent<UnityEngine.UI.Image>().color = new Color(1, 1, 1, 1);
+        button.transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = new Color(1, 1, 1, 1);
+        available = true;
+    }
+
+    public void ShowHint()
+    {
+        if (available)
+        {
+            showed = !showed;
+            panel.SetActive(showed);
+        }
     }
 
     private IEnumerator VibrateDuration()

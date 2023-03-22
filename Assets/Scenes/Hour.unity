@@ -1052,6 +1052,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de7d363f429b1174fb4893e8514b791e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  panel: {fileID: 4330831273656652645}
+  button: {fileID: 4330831273656652644}
   clock: {fileID: 919132149445060873}
   clockObject: {fileID: 919132149445060873}
   min: {fileID: 465844779}
@@ -1665,6 +1667,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Panel
       objectReference: {fileID: 0}
+    - target: {fileID: 4330831274302981781, guid: 77a8930f5f84a01488bdb7cdb7eef639, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2100972679}
+    - target: {fileID: 4330831274302981781, guid: 77a8930f5f84a01488bdb7cdb7eef639, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ShowHint
+      objectReference: {fileID: 0}
+    - target: {fileID: 4330831274302981781, guid: 77a8930f5f84a01488bdb7cdb7eef639, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: HoursEnigma, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 4330831275067221330, guid: 77a8930f5f84a01488bdb7cdb7eef639, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -1815,6 +1829,16 @@ MonoBehaviour:
           m_WaitForCompletion: 0
           m_LocalVariables: []
         m_PropertyPath: m_text
+--- !u!1 &4330831273656652644 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4330831274302981778, guid: 77a8930f5f84a01488bdb7cdb7eef639, type: 3}
+  m_PrefabInstance: {fileID: 4330831273656652640}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4330831273656652645 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4330831273992751365, guid: 77a8930f5f84a01488bdb7cdb7eef639, type: 3}
+  m_PrefabInstance: {fileID: 4330831273656652640}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4390846948219192253
 Transform:
   m_ObjectHideFlags: 0

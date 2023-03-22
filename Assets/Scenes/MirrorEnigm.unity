@@ -997,6 +997,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66b3a20e10732d246b5a4a83f557b59b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  panel: {fileID: 3084192545673425434}
+  button: {fileID: 3084192545673425433}
   circleImage: {fileID: 1361452766}
   letterText: {fileID: 910057663}
 --- !u!114 &1689537201
@@ -1120,6 +1122,18 @@ PrefabInstance:
     - target: {fileID: 4330831273992751365, guid: 77a8930f5f84a01488bdb7cdb7eef639, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4330831274302981781, guid: 77a8930f5f84a01488bdb7cdb7eef639, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1689537200}
+    - target: {fileID: 4330831274302981781, guid: 77a8930f5f84a01488bdb7cdb7eef639, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ShowHint
+      objectReference: {fileID: 0}
+    - target: {fileID: 4330831274302981781, guid: 77a8930f5f84a01488bdb7cdb7eef639, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: MirrorEnigm, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 4330831275067221330, guid: 77a8930f5f84a01488bdb7cdb7eef639, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -1284,3 +1298,13 @@ MonoBehaviour:
           m_WaitForCompletion: 0
           m_LocalVariables: []
         m_PropertyPath: m_text
+--- !u!1 &3084192545673425433 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4330831274302981778, guid: 77a8930f5f84a01488bdb7cdb7eef639, type: 3}
+  m_PrefabInstance: {fileID: 3084192545673425428}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &3084192545673425434 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4330831273992751365, guid: 77a8930f5f84a01488bdb7cdb7eef639, type: 3}
+  m_PrefabInstance: {fileID: 3084192545673425428}
+  m_PrefabAsset: {fileID: 0}

@@ -1,14 +1,25 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Android;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class VoiceListener : MonoBehaviour
 {
-    bool isComplet;
+    // hint
+    [SerializeField] GameObject panel;
+    [SerializeField] GameObject button;
+    bool showed;
+    bool available = false;
+    DateTime lastTime;
+    float deltaTime;
+    float timeLeft;
 
+    bool isComplet;
     int qSamples = 4096;  // array size
     float refValue  = 0.1f; // RMS value for 0 dB
     float rmsValue ;   // sound level - RMS
@@ -80,7 +91,69 @@ public class VoiceListener : MonoBehaviour
             StartCoroutine(ShowLine());
         }
 
-        
+        // =============== hint ====================
+        showed = false;
+
+        if (!PlayerPrefs.HasKey("hintVoice"))
+        {
+            PlayerPrefs.SetFloat("hintVoice", 300);
+        }
+        timeLeft = PlayerPrefs.GetFloat("hintVoice");
+
+        if (timeLeft > 0)
+        {
+            StartCoroutine(ShowButton());
+        }
+        else
+        {
+            PlayerPrefs.SetFloat("hintVoice", 0);
+            button.GetComponent<Image>().color = new Color(1, 1, 1, 1);
+            button.transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = new Color(1, 1, 1, 1);
+            available = true;
+        }
+
+    }
+
+    void OnApplicationFocus(bool hasFocus)
+    {
+        float deltaTime = 0;
+        if (hasFocus)
+        {
+            lastTime = DateTime.Now;
+        }
+        else
+        {
+            SaveTime();
+        }
+    }
+
+    void SaveTime()
+    {
+        float deltaTime = DateTime.Now.Subtract(lastTime).Minutes * 60 + DateTime.Now.Subtract(lastTime).Seconds;
+        float time = timeLeft - deltaTime;
+        if (time < 0)
+        {
+            time = 0;
+        }
+        PlayerPrefs.SetFloat("hintVoice", time);
+    }
+
+    IEnumerator ShowButton()
+    {
+        lastTime = DateTime.Now;
+        yield return new WaitForSeconds(timeLeft);
+        button.GetComponent<Image>().color = new Color(1, 1, 1, 1);
+        button.transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = new Color(1, 1, 1, 1);
+        available = true;
+    }
+
+    public void ShowHint()
+    {
+        if (available)
+        {
+            showed = !showed;
+            panel.SetActive(showed);
+        }
     }
 
     IEnumerator ShowLetter()
@@ -182,8 +255,17 @@ public class VoiceListener : MonoBehaviour
 
     public void ReturnToHub()
     {
+        SaveTime();
         EndListen();
         SceneManager.LoadScene("Hub");
     }
 
+    private void OnGUI()
+    {
+        GUI.skin.label.fontSize = Screen.width / 40;
+        // GUILayout.Label("\n\n time : " +  timeLeft);
+        //GUI.Label(new Rect(20,20,5000,45), "time : " + timeLeft.ToString());
+
+
+    }
 }

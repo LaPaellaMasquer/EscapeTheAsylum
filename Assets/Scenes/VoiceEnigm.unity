@@ -570,7 +570,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 464337952}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -554.9, y: -1167, z: -8.2}
+  m_LocalPosition: {x: -554.9, y: -1166.968, z: -8.2}
   m_LocalScale: {x: 0.91, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -723,6 +723,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 663c9e35e13304342bb806965a48fdd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  panel: {fileID: 1940142997}
+  button: {fileID: 1940142996}
   lineRenderer: {fileID: 464337953}
   audioSource: {fileID: 1888264702}
 --- !u!1 &720673528
@@ -815,10 +817,14 @@ PrefabInstance:
     - target: {fileID: 4330831274302981781, guid: 77a8930f5f84a01488bdb7cdb7eef639, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1128748757}
+      objectReference: {fileID: 598674331}
     - target: {fileID: 4330831274302981781, guid: 77a8930f5f84a01488bdb7cdb7eef639, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: ShowHint
+      objectReference: {fileID: 0}
+    - target: {fileID: 4330831274302981781, guid: 77a8930f5f84a01488bdb7cdb7eef639, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: VoiceListener, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 4330831275067221330, guid: 77a8930f5f84a01488bdb7cdb7eef639, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -928,17 +934,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 4330831275706047328, guid: 77a8930f5f84a01488bdb7cdb7eef639, type: 3}
   m_PrefabInstance: {fileID: 1128748755}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1128748757 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2211757768046946082, guid: 77a8930f5f84a01488bdb7cdb7eef639, type: 3}
-  m_PrefabInstance: {fileID: 1128748755}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 380f14c00a2a66245bbdab801189073f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1128748758 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4330831275742828267, guid: 77a8930f5f84a01488bdb7cdb7eef639, type: 3}
@@ -1300,6 +1295,16 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &1940142996 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4330831274302981778, guid: 77a8930f5f84a01488bdb7cdb7eef639, type: 3}
+  m_PrefabInstance: {fileID: 1128748755}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1940142997 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4330831273992751365, guid: 77a8930f5f84a01488bdb7cdb7eef639, type: 3}
+  m_PrefabInstance: {fileID: 1128748755}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1023582423556469507
 MonoBehaviour:
   m_ObjectHideFlags: 0

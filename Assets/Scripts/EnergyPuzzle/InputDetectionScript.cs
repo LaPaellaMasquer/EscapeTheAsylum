@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class InputDetectionScript : MonoBehaviour
 {
+    Camera mainCam;
     void Start()
     {
+        mainCam = Camera.main;
     }
     // Update is called once per frame
     void Update()
     {
         if (Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Began)
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.touches[0].position);
+            Ray ray = mainCam.ScreenPointToRay(Input.touches[0].position);
             RaycastHit hit;
 
             if(Physics.Raycast(ray, out hit))
@@ -28,7 +30,7 @@ public class InputDetectionScript : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            Ray ray = mainCam.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
 
             if (Physics.Raycast(ray, out hit))

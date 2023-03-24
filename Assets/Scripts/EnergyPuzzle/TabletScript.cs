@@ -12,11 +12,11 @@ public class TabletScript : MonoBehaviour
     public PieceScript LastPiece;
 
     public PieceScript[] pieces;
-
+    
     public bool solved;
 
     private bool charging, display;
-
+    private bool isRunning;
     public void Awake()
     {
         if (!PlayerPrefs.HasKey("energy"))
@@ -25,12 +25,14 @@ public class TabletScript : MonoBehaviour
         }
         solved = PlayerPrefs.GetInt("energy") != 0;
         display = false;
+        isRunning = false;
     }
 
     // Start is called before the first frame update
     void Start()
     {
         FirstPiece.setFirst();
+
     }
 
     // Update is called once per frame
@@ -49,9 +51,10 @@ public class TabletScript : MonoBehaviour
             if (!display) FirstPiece.setOff();
         }
 
-        if (LastPiece.isLink(2) && LastPiece.getOn())
+        if (LastPiece.isLink(2) && LastPiece.getOn() )
         {
-            StartCoroutine(WaitCoroutine());
+            if(!isRunning)
+                StartCoroutine(WaitCoroutine());
         }
         
         if(solved)
@@ -63,10 +66,12 @@ public class TabletScript : MonoBehaviour
 
     IEnumerator WaitCoroutine()
     {
+        isRunning = true;
         yield return new WaitForSeconds(2);
 
         solved = true;
         PlayerPrefs.SetInt("energy", 1);
+        isRunning = false;
     }
 
     private void displaySolution()
@@ -78,5 +83,10 @@ public class TabletScript : MonoBehaviour
         }
         display = true;
     }
-
+    private void OnGUI()
+    {
+         GUI.skin.label.fontSize = Screen.width / 40;
+        GUI.Label(new Rect(10, 70  *50, 4000, 40),"SensorValue" +isRunning);
+       // GUILayout.Label("Value " +alpha.ToString() );
+    }
 }

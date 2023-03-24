@@ -11,7 +11,7 @@ public class PieceScript: MonoBehaviour
     private bool solved, first;
 
     public bool solution;
-
+    private int matShow ; //0 on 1 off
     // outputs depends on the shape of the piece,index indicates the orientation: 0 = up, 1 = right, 2 = down, 3 = left;
     public bool[] output = new bool[4];
 
@@ -26,7 +26,7 @@ public class PieceScript: MonoBehaviour
         isOn = false;
         int i = Random.Range(1, 4);
         for (int j = 0; j < i; j++)rotate();
-
+        matShow = 2;
         //StartCoroutine(CheckPiece());
     }
 
@@ -61,13 +61,15 @@ public class PieceScript: MonoBehaviour
     void Update()
     {
         if(!first && !solved) check();
-
-        if (isOn)
+    
+        if (isOn && matShow != 0)
         {
+            matShow = 0;
             led.setOn(1);
         }
-        else
+        else if(!isOn && matShow != 1)
         {
+            matShow = 1;
             led.setOff(1);
         }
         
@@ -87,13 +89,17 @@ public class PieceScript: MonoBehaviour
                     {
                         src[i] = true;
                         isOn = true;
+                    //    led.setOn(1);
+                      //  break;
                     }
                 } else
                 {
                     src[i] = false;
+                    // led.setOff(1);
                 }
             }
         }
+       // if(!isOn)led.setOff(1);
     }
 
     public bool isLink(int neighbor)

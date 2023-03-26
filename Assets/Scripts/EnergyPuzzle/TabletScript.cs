@@ -15,8 +15,8 @@ public class TabletScript : MonoBehaviour
     
     public bool solved;
 
-    private bool charging, display;
-    private bool isRunning;
+    private bool charging, lastCharging, display;
+
     public void Awake()
     {
         if (!PlayerPrefs.HasKey("energy"))
@@ -25,14 +25,60 @@ public class TabletScript : MonoBehaviour
         }
         solved = PlayerPrefs.GetInt("energy") != 0;
         display = false;
-        isRunning = false;
+
     }
 
     // Start is called before the first frame update
     void Start()
     {
         FirstPiece.setFirst();
+        lastCharging = false;
+        
+    }
 
+    public void UpdatePieces()
+    {
+        if(!solved)
+        {
+            // reset all pieces 
+            foreach (PieceScript p in pieces)
+            {
+                p.setOn(false);
+            }
+
+            if (charging)
+            {
+
+                    SetPieces(FirstPiece);
+
+                    // if solved
+                    if (LastPiece.getOn() && LastPiece.output[0])
+                    {
+                        solved = true;
+                        StartCoroutine(WaitCoroutine());
+                    }
+           
+        }
+ 
+        }
+
+    }
+
+    // Set On the piece and his childs (recursif)
+    void SetPieces(PieceScript piece)
+    {
+        piece.setOn(true);
+       
+        for (int i = 0; i < 4; i++)
+        {
+            if (piece.neighbors[i])
+            {
+                if (piece.isLink(i) && !piece.neighbors[i].getOn())
+                {
+                    SetPieces(piece.neighbors[i]);
+                }
+            }
+        }
     }
 
     // Update is called once per frame
@@ -40,38 +86,42 @@ public class TabletScript : MonoBehaviour
     {
         charging = (SystemInfo.batteryStatus == BatteryStatus.Charging);
         
-        if (charging)
-        {
-            lamp1.setOn(0);
-            if(!display) FirstPiece.setOn();
-        }
-        else
-        {
-            lamp1.setOff(0);
-            if (!display) FirstPiece.setOff();
-        }
+        if (charging != lastCharging)
+        { 
+            UpdatePieces();
 
-        if (LastPiece.isLink(2) && LastPiece.getOn() )
-        {
-            if(!isRunning)
-                StartCoroutine(WaitCoroutine());
+            lamp1.setOn(charging, 0);
+
+            if (solved)
+            {
+                if (charging)
+                    displaySolution();
+                else
+                {
+                    // reset all pieces 
+                    foreach (PieceScript p in pieces)
+                    {
+                        p.setOn(false);
+                    }
+                }
+                lamp2.setOn(charging, 0);
+            } 
+            else
+                FirstPiece.setOn(charging);
+
+                 
         }
-        
-        if(solved)
-        {
-            lamp2.setOn(0);
-            displaySolution();
-        }
+       
+        lastCharging = charging;
     }
 
     IEnumerator WaitCoroutine()
     {
-        isRunning = true;
         yield return new WaitForSeconds(2);
 
-        solved = true;
+        displaySolution();
+        lamp2.setOn(charging, 0);
         PlayerPrefs.SetInt("energy", 1);
-        isRunning = false;
     }
 
     private void displaySolution()
@@ -83,10 +133,5 @@ public class TabletScript : MonoBehaviour
         }
         display = true;
     }
-    private void OnGUI()
-    {
-         GUI.skin.label.fontSize = Screen.width / 40;
-        GUI.Label(new Rect(10, 70  *50, 4000, 40),"SensorValue" +isRunning);
-       // GUILayout.Label("Value " +alpha.ToString() );
-    }
+
 }

@@ -9,16 +9,12 @@ public class LedScript : MonoBehaviour
     public Material On;
     public Material Off;
 
-
-
-    public void setOn(int index)
+    public void setOn(bool b, int index)
     {
-        changeMaterial(On, index);
-    }
-
-    public void setOff(int index)
-    {
-        changeMaterial(Off, index);
+        if(b)
+            changeMaterial(On, index);
+        else
+            changeMaterial(Off, index);
     }
 
     void changeMaterial(Material m, int index)

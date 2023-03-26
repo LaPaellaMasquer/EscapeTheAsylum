@@ -3,63 +3,32 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PieceScript: MonoBehaviour
-{
-    public GameObject obj;
-
+{ 
+    public PieceScript[] neighbors = new PieceScript[4];
     public LedScript led;
-
-    private bool solved, first;
-
+    TabletScript script;
+    private bool first;
+    private bool isOn;
     public bool solution;
-    private int matShow ; //0 on 1 off
+
     // outputs depends on the shape of the piece,index indicates the orientation: 0 = up, 1 = right, 2 = down, 3 = left;
     public bool[] output = new bool[4];
-
-    public PieceScript[] neighbors = new PieceScript[4];
-
-    private bool isOn;
-    private bool[] src = new bool[4];
-
+   
     // Start is called before the first frame update
     void Start()
     {
+        script = gameObject.transform.parent.GetComponent<TabletScript>();
+
         isOn = false;
         int i = Random.Range(1, 4);
-        for (int j = 0; j < i; j++)rotate();
-        matShow = 2;
-        //StartCoroutine(CheckPiece());
+        for (int j = 0; j < i; j++)
+            rotate();
     }
 
-    /*IEnumerator CheckPiece()
-    {
 
-        while (true)
-        {
-           
-            if (!first && !solved)
-            {
-                isOn = false;
-                yield return null;
-                check();
-            }
-
-            if (isOn)
-            {
-                led.setOn(1);
-            }
-            else
-            {
-                led.setOff(1);
-            }
-            yield return null;
-        }
-    }
-    */
-
-
-        // Update is called once per frame
+     // Update is called once per frame
     void Update()
-    {
+    {/*
         if(!first && !solved) check();
     
         if (isOn && matShow != 0)
@@ -72,9 +41,9 @@ public class PieceScript: MonoBehaviour
             matShow = 1;
             led.setOff(1);
         }
-        
+        */
     }
-
+    /*
     public void check()
     {
         isOn = false;
@@ -84,29 +53,26 @@ public class PieceScript: MonoBehaviour
             {
                 if (neighbors[i].isLink(i))
                 {
-                    //neighbors[i].check();
                     if (neighbors[i].isOn)
                     {
                         src[i] = true;
                         isOn = true;
-                    //    led.setOn(1);
-                      //  break;
                     }
                 } else
                 {
                     src[i] = false;
-                    // led.setOff(1);
                 }
             }
         }
-       // if(!isOn)led.setOff(1);
     }
+    */
 
+    // return true if this piece is link with neighbor
     public bool isLink(int neighbor)
     {
         int index = neighborPos(neighbor);
 
-        if (output[index] && !src[index])//
+        if (output[neighbor] && neighbors[neighbor].output[index])
         {
             return true;
         }
@@ -125,14 +91,10 @@ public class PieceScript: MonoBehaviour
         }
     }
 
-    public void setOn()
+    public void setOn(bool b)
     {
-        isOn = true;
-    }
-
-    public void setOff()
-    {
-        isOn = false;
+        isOn = b;
+        led.setOn(b, 1);
     }
 
     public bool getOn()
@@ -142,8 +104,8 @@ public class PieceScript: MonoBehaviour
 
     public void touched()
     {
-        isOn = false;
         rotate();
+        script.UpdatePieces();
     }
 
     public void rotate()
@@ -164,7 +126,7 @@ public class PieceScript: MonoBehaviour
 
     private void objRotation()
     {
-        obj.transform.Rotate(0.0f, 90.0f, 0.0f, Space.Self);
+       gameObject.transform.GetChild(0).Rotate(0.0f, 90.0f, 0.0f, Space.Self);
     }
 
     public void setFirst()
@@ -174,14 +136,6 @@ public class PieceScript: MonoBehaviour
 
     public void display()
     {
-        solved = true;
-
-        if (solution)
-        {
-            setOn();
-        }
-        else{
-            setOff();
-        }
+        setOn(solution);
     }
 }

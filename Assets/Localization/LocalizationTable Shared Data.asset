@@ -87,6 +87,10 @@ MonoBehaviour:
     m_Key: VoiceEnigm/Canvas/Panel/Hint/Text (TMP) 1
     m_Metadata:
       m_Items: []
+  - m_Id: 6131398758146048
+    m_Key: Intro/Canvas/InfoPermission
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

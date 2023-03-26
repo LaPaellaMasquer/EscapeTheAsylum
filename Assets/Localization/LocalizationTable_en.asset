@@ -92,6 +92,10 @@ MonoBehaviour:
     m_Localized: "\rCalm has no place here !"
     m_Metadata:
       m_Items: []
+  - m_Id: 6131398758146048
+    m_Localized: Don't choose "Allow permission for once"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

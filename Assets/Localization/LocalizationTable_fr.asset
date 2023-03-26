@@ -82,6 +82,10 @@ MonoBehaviour:
     m_Localized: Le calme n'a pas sa place ici !
     m_Metadata:
       m_Items: []
+  - m_Id: 6131398758146048
+    m_Localized: Ne pas choisir "Autoriser pour une fois"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
